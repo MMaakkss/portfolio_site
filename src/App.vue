@@ -1,9 +1,20 @@
 <template>
-
+	<Main/>
 </template>
 
-<script></script>
+<script>
+import Main from "./view/Main.vue";
 
-<style lang="scss" scoped>
+export default {
+	name: 'App',
+	components: {
+		Main,
+	}
+}
+</script>
 
+<style lang="scss">
+#app {
+	height: 100%;
+}
 </style>
