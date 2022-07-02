@@ -31,6 +31,7 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	border-bottom: 1px solid $dark_grey;
+	background-color: $light_dark;
 
 	a:hover {
 		color: $white;
