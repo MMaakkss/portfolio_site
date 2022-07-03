@@ -4,19 +4,22 @@
 			<Accordion v-for="(item, idx) in items" :key="idx" :data="item"></Accordion>
 		</div>
 		<div class="about__main">
-			<div v-if="$route.name === 'about'">About</div>
-			<router-view />
+			<Tabs/>
+			<div v-if="$route.name === 'about'"></div>
+			<router-view/>
 		</div>
 	</div>
 </template>
 
 <script>
 import Accordion from "@/components/Accordion.vue";
+import Tabs from "@/components/Helpers/Tabs.vue";
 
 export default {
 	name: "About",
 	components: {
-		Accordion
+		Accordion,
+		Tabs
 	},
 	data() {
 		return {
@@ -45,7 +48,7 @@ export default {
 									icon: 'custom-education',
 									link: 'school'
 								}
-								]
+							]
 						},
 					]
 				},
@@ -63,7 +66,7 @@ export default {
 						}
 					]
 				}
-			]
+			],
 		}
 	},
 }
@@ -74,12 +77,17 @@ export default {
 
 .about {
 	height: 100%;
+	display: flex;
 
 	&__accordion {
 		height: 100%;
 		width: 310px;
-		float: left;
 		border-right: 1px solid $dark_grey;
+	}
+
+	&__main {
+		flex: 1 1;
+		max-width: calc(100% - 310px)
 	}
 }
 </style>

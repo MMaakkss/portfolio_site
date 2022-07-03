@@ -77,10 +77,8 @@ export default {
 			max-height: 100vh;
 
 			.icon {
-				margin-top: 8px;
 				transform: rotate(0deg);
-				top: 0;
-				left: -15px;
+				transform: translate(-5px, 0);
 			}
 		}
 
@@ -132,7 +130,7 @@ export default {
 
 		.icon {
 			font-size: 0.7rem;
-			transition: 0.25s ease;
+			transition: transform 0.25s ease;
 		}
 	}
 }

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Button from "./Button.vue";
+import Button from "./Helpers/Button.vue";
 
 export default {
 	name: "Game",
@@ -97,7 +97,8 @@ export default {
 		height: 13px;
 		border-radius: 100%;
 		position: absolute;
-		&:after{
+
+		&:after {
 			content: '✕';
 			position: relative;
 			font-size: 0.8rem;
@@ -105,19 +106,23 @@ export default {
 			top: -3px;
 			left: 0.2px;
 		}
-		&:nth-child(1){
+
+		&:nth-child(1) {
 			top: 8px;
 			left: 8px;
 		}
-		&:nth-child(2){
+
+		&:nth-child(2) {
 			bottom: 8px;
 			left: 8px;
 		}
-		&:nth-child(3){
+
+		&:nth-child(3) {
 			top: 8px;
 			right: 8px;
 		}
-		&:nth-child(4){
+
+		&:nth-child(4) {
 			bottom: 8px;
 			right: 8px;
 		}
@@ -172,7 +177,8 @@ export default {
 		justify-content: center;
 		font-size: 1.5rem;
 	}
-	&__winner{
+
+	&__winner {
 		margin-bottom: 20px;
 	}
 }

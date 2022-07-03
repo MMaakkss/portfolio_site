@@ -57,9 +57,6 @@ export default {
 			this.isActive = !this.isActive
 		}
 	},
-	mounted() {
-		console.log(this.item)
-	}
 }
 </script>
 
@@ -67,7 +64,7 @@ export default {
 .item {
 	max-height: 1rem;
 	overflow: hidden;
-	transition: 0.5s ease;
+	transition: max-height 0.5s ease;
 	margin-bottom: 1rem;
 	position: relative;
 
@@ -111,7 +108,7 @@ export default {
 	.icon {
 		font-size: 0.5rem;
 		transform: rotate(-90deg);
-		transition: 0.25s ease;
+		transition: transform 0.25s ease;
 		margin-left: -0.4rem;
 		position: absolute;
 	}

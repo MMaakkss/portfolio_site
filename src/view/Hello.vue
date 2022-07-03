@@ -43,6 +43,7 @@ export default {
 	justify-content: center;
 	height: 100%;
 	gap: 130px;
+	overflow: hidden;
 
 	.introduce {
 		color: $white;
