@@ -66,6 +66,7 @@ export default {
 @import "../style/variables";
 
 .accordion {
+	width: 310px;
 
 	&__item {
 		border-bottom: 1px solid $dark_grey;

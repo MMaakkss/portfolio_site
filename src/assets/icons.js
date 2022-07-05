@@ -26,3 +26,6 @@ export const customFolder = { prefix: 'fas', iconName: 'custom-folder', icon: [1
 
 const closePath = 'M6.99999 5.586L11.95 0.636002L13.364 2.05L8.41399 7L13.364 11.95L11.95 13.364L6.99999 8.414L2.04999 13.364L0.635986 11.95L5.58599 7L0.635986 2.05L2.04999 0.636002L6.99999 5.586Z';
 export const customClose = { prefix: 'fas', iconName: 'custom-close', icon: [14, 14, [], null, closePath] };
+
+const vuePath = 'M0 0H4L11 12L18 0H22L11 19L0 0ZM8.667 0L11 4L13.333 0H17.368L11 11L4.632 0H8.667Z';
+export const customVue = { prefix: 'fas', iconName: 'custom-vue', icon: [22, 19, [], null, vuePath] };

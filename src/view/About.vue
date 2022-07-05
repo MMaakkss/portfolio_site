@@ -5,7 +5,10 @@
 		</div>
 		<div class="about__main">
 			<Tabs/>
-			<div v-if="$route.name === 'about'"></div>
+			<div v-if="$route.name === 'about'">
+				<div class="tab-content">
+				</div>
+			</div>
 			<router-view/>
 		</div>
 	</div>
@@ -81,13 +84,31 @@ export default {
 
 	&__accordion {
 		height: 100%;
-		width: 310px;
 		border-right: 1px solid $dark_grey;
 	}
 
 	&__main {
 		flex: 1 1;
 		max-width: calc(100% - 310px)
+	}
+
+	.tab-content {
+		padding: 1.125rem;
+		line-height: 150%;
+
+		p {
+			padding-left: 1.2rem;
+			position: relative;
+			//background: ;
+
+			&:before {
+				position: absolute;
+				content: ' ';
+				height: 100%;
+				width: 20px;
+				left: 0;
+			}
+		}
 	}
 }
 </style>
