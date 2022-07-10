@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/vue": "^1.0.0-beta.9",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/vue-fontawesome": "^3.0.1",
     "animate.css": "^4.1.1",

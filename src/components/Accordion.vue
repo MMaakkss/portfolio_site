@@ -6,13 +6,13 @@
 		>
 			<router-link v-if="data.link" :to="data.link">
 				<span class="accordion__item-title" @click="toggleAccordion">
-					<font-awesome-icon class="icon" icon="custom-arrow"/>
+					<font-awesome-icon class="icon-top" icon="custom-arrow"/>
 					{{ data.title }}
 				</span>
 			</router-link>
 
 			<span v-else class="accordion__item-title" @click="toggleAccordion">
-					<font-awesome-icon class="icon" icon="custom-arrow"/>
+					<font-awesome-icon class="icon icon-top" icon="custom-arrow"/>
 					{{ data.title }}
 				</span>
 
@@ -21,9 +21,15 @@
 			</div>
 
 			<div v-if="data.inner" class="accordion__item-inner">
-				<p v-for="(item, idx) in data.inner" :key="idx">
+				<p
+					v-for="(item, idx) in data.inner"
+					:key="idx"
+				>
 					<font-awesome-icon :icon="item.icon" class="icon"/>
-					{{ item.title }}
+					<router-link v-if="item.link" :to="item.link">
+						{{ item.title }}
+					</router-link>
+					<span v-else>{{ item.title }}</span>
 				</p>
 			</div>
 		</div>
@@ -34,9 +40,9 @@
 import AccordionItem from "./AccordionItem.vue";
 
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {customArrow, customMail, customTel} from "@/assets/icons.js";
+import {customArrow, customMail, customTel, customLink} from "@/assets/icons.js";
 
-library.add(customArrow, customMail, customTel)
+library.add(customArrow, customMail, customTel, customLink)
 
 export default {
 	name: "Accordion",
@@ -77,7 +83,7 @@ export default {
 		&.active {
 			max-height: 100vh;
 
-			.icon {
+			.icon-top {
 				transform: rotate(0deg);
 				transform: translate(-5px, 0);
 			}
@@ -121,10 +127,25 @@ export default {
 
 			p {
 				margin-bottom: 0.8rem;
-				padding-left: 1.125rem;
+				padding-left: 0.85rem;
+				display: flex;
+				align-items: center;
 
 				&:last-child {
 					margin: 0;
+				}
+
+				a {
+					padding-left: 0.6rem;
+					transition: 0.25s ease;
+
+					&:hover {
+						color: $white;
+					}
+				}
+
+				span {
+					padding-left: 0.55rem;
 				}
 			}
 		}
