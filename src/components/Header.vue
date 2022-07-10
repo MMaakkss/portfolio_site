@@ -67,6 +67,7 @@ export default {
 	}
 	.router-link-active{
 		top: -3px;
+		color: $white;
 	}
 }
 </style>

@@ -121,7 +121,7 @@ export default {
 	}
 
 	&__form {
-		padding-top: 115px;
+		padding: 115px 0 80px;
 
 		:deep {
 			.formkit-form {

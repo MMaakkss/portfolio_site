@@ -12,6 +12,7 @@
 					</p>
 					<div class="item__preview">
 						<div class="item__img">
+							<img src="../assets/examp.jpeg" alt="preview">
 							<font-awesome-icon class="item__icon" icon="custom-vue"/>
 						</div>
 						<div class="item__preview-bottom">
@@ -31,6 +32,7 @@
 					</p>
 					<div class="item__preview">
 						<div class="item__img">
+							<img src="../assets/examp.jpeg" alt="preview">
 							<font-awesome-icon class="item__icon" icon="custom-vue"/>
 						</div>
 						<div class="item__preview-bottom">
@@ -50,6 +52,7 @@
 					</p>
 					<div class="item__preview">
 						<div class="item__img">
+							<img src="../assets/examp.jpeg" alt="preview">
 							<font-awesome-icon class="item__icon" icon="custom-vue"/>
 						</div>
 						<div class="item__preview-bottom">
@@ -138,6 +141,11 @@ export default {
 				background-color: $dark_blue;
 				border-radius: 8px;
 				border: 1px solid $dark_grey;
+				transition: 0.3s ease;
+
+				&:hover {
+					box-shadow: 1px 1px 10px rgba(77, 91, 206, 0.2);
+				}
 
 				&-bottom {
 					padding: 2rem;
@@ -167,11 +175,19 @@ export default {
 			&__img {
 				height: 145px;
 				border-radius: 8px 8px 0 0;
-				background-image: url("../assets/examp.jpeg");
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: cover;
+				overflow: hidden;
 				position: relative;
+
+				img {
+					border-radius: 8px 8px 0 0;
+					width: 100%;
+					height: 100%;
+					transition: 0.3s ease;
+
+					&:hover {
+						transform: scale(1.1);
+					}
+				}
 			}
 
 			&__icon {

@@ -1,7 +1,11 @@
 <template>
 	<div class="about">
 		<div class="about__accordion">
-			<Accordion v-for="(item, idx) in items" :key="idx" :data="item"></Accordion>
+			<Accordion
+				v-for="(item, idx) in items"
+				:key="idx"
+				:data="item"
+			/>
 		</div>
 		<div class="about__main">
 			<Tabs/>
