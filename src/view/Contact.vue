@@ -1,5 +1,7 @@
 <template>
-	Contact
+	<div>
+		Contact
+	</div>
 </template>
 
 <script>

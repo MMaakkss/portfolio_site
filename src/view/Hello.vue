@@ -1,6 +1,6 @@
 <template>
 	<div class="hello">
-		<div class="introduce">
+		<div class="introduce animate__animated animate__bounceInLeft">
 			<p class="introduce__hi">Hi all. I am</p>
 			<h1 class="introduce__name">Maksym Minakov</h1>
 			<p class="introduce__position">> Front-end developer</p>

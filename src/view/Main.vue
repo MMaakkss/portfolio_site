@@ -2,7 +2,14 @@
 	<div class="wrapper">
 		<Header/>
 		<div class="content">
-			<router-view></router-view>
+			<router-view v-slot="{ Component }">
+				<transition
+					mode="out-in"
+					name="fade"
+				>
+					<component :is="Component"/>
+				</transition>
+			</router-view>
 		</div>
 		<Footer class="footer"/>
 	</div>
@@ -32,6 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -44,5 +52,13 @@ export default {
 	.footer {
 		flex: 0 0 auto;
 	}
+}
+
+.fade-enter-from, .fade-leave-to {
+	opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 0.5s ease;
 }
 </style>
