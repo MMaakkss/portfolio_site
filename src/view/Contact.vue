@@ -145,7 +145,7 @@ export default {
 				border: 1px solid $dark_grey;
 				margin-top: 10px;
 				transition: box-shadow 0.25s ease;
-				color: $white;
+				color: $input	;
 				width: 100%;
 
 				&:-webkit-autofill {

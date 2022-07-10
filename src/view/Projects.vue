@@ -114,10 +114,12 @@ export default {
 	}
 
 	&__items {
-		padding: 5.625rem 6.875rem;
+		padding: 5.625rem 2.5rem;
 		display: flex;
 		justify-content: space-around;
 		flex-wrap: wrap;
+		max-height: calc(100vh - 141px);
+		overflow: auto;
 		gap: 2.5rem;
 
 		.item {
