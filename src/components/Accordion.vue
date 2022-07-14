@@ -63,14 +63,16 @@ export default {
 		toggleAccordion(e) {
 			this.isActive = !this.isActive;
 
-			let item = e.target.closest('.accordion__item');
+			if (this.data.inner) {
+				let item = e.target.closest('.accordion__item');
 
-			if (this.isActive) {
-				this.height = this.itemHeight;
-				item.style.maxHeight = this.itemHeight + 'px';
-			} else {
-				this.height = 40;
-				item.style.maxHeight = 40 + 'px';
+				if (this.isActive) {
+					this.height = this.itemHeight;
+					item.style.maxHeight = this.itemHeight + 'px';
+				} else {
+					this.height = 40;
+					item.style.maxHeight = 40 + 'px';
+				}
 			}
 		},
 		innerHeight(height) {
