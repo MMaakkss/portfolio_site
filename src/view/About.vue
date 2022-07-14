@@ -34,7 +34,7 @@ export default {
 				{
 					title: 'personal-info',
 					icon: '',
-					content: [
+					inner: [
 						{
 							title: 'bio',
 							icon: 'custom-folder',
@@ -43,7 +43,19 @@ export default {
 						{
 							title: 'interests',
 							icon: 'custom-folder',
-							iconColor: '#43D9AD'
+							iconColor: '#43D9AD',
+							inner: [
+								{
+									title: 'school',
+									icon: 'custom-education',
+									link: 'school'
+								},
+								{
+									title: 'school',
+									icon: 'custom-education',
+									link: 'school1'
+								},
+							]
 						},
 						{
 							title: 'education',
@@ -53,8 +65,13 @@ export default {
 								{
 									title: 'school',
 									icon: 'custom-education',
-									link: 'school'
-								}
+									link: 'school2'
+								},
+								{
+									title: 'school',
+									icon: 'custom-education',
+									link: 'school3'
+								},
 							]
 						},
 					]

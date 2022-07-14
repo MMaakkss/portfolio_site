@@ -13,9 +13,8 @@
 			/>
 			<span class="item__title">
 					{{ item.title }}
-				</span></div>
-		<AccordionItem v-if="item.content" :item="item.content"/>
-
+			</span>
+		</div>
 		<div class="item-inner" v-if="item.inner">
 			<router-link
 				class="item-inner__wrap"
@@ -45,46 +44,86 @@ export default {
 		item: {
 			type: Object,
 			default: {},
+		},
+		height: {
+			type: Number,
+			default: 0
 		}
 	},
 	data() {
 		return {
-			isActive: false
+			isActive: false,
+		}
+	},
+	computed: {
+		itemHeight() {
+			const padding = 18;
+			let itemHeight = 16.5 * this.item.inner.length;
+			let marginHeight = 13 * (this.item.inner.length - 1);
+			let contentHeight = padding + itemHeight + marginHeight;
+
+			return contentHeight
 		}
 	},
 	methods: {
-		toggleAccordion() {
-			this.isActive = !this.isActive
+		toggleAccordion(e) {
+			this.isActive = !this.isActive;
+
+			if (this.item.inner) {
+				let item = e.target.closest('.accordion__item');
+
+				let innerItem = e.target.closest('.item');
+				let contentHeight = this.height;
+
+				if (this.isActive) {
+					innerItem.style.maxHeight = this.itemHeight + 16 + 'px'
+				} else {
+					innerItem.style.maxHeight = 16 + 'px';
+				}
+
+
+
+				if (this.isActive) {
+					item.style.maxHeight = this.itemHeight + contentHeight + 'px';
+
+					this.$emit('inner-height-plus', this.itemHeight);
+				} else {
+					item.style.maxHeight = this.height + 'px';
+
+					this.$emit('inner-height-minus', this.itemHeight);
+				}
+			}
 		}
 	},
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../style/variables";
+
 .item {
-	max-height: 1rem;
 	overflow: hidden;
 	transition: max-height 0.5s ease;
 	margin-bottom: 1rem;
+	max-height: 1rem;
 	position: relative;
 
 	&:last-child {
 		margin: 0;
 	}
 
-	&.active {
-		max-height: 100vh;
-	}
-
 	&.active &__head {
 		.icon {
 			transform: rotate(0deg);
-			color: #FFFFFF;
+			color: $white;
 		}
 	}
 
 	&.active &__title {
-		color: #FFFFFF;
+		color: $white;
+	}
+	.router-link-active{
+		color: $white;
 	}
 
 	&__head {
@@ -95,7 +134,7 @@ export default {
 		transition: 0.25s ease;
 
 		&:hover {
-			color: #FFFFFF;
+			color: $white;
 		}
 
 
@@ -132,12 +171,13 @@ export default {
 			flex: 1 1;
 
 			&:hover {
-				color: #FFFFFF;
+				color: $white;
 			}
 		}
 
 		&__link {
 			padding: 0 1.125rem;
+			margin-bottom: 0.8125rem;
 
 			span {
 				padding-left: 0.5rem;
@@ -153,7 +193,7 @@ export default {
 	}
 
 	.router-link-active {
-		color: #FFFFFF;
+		color: $white;
 	}
 }
 </style>

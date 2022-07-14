@@ -12,25 +12,12 @@
 			</router-link>
 
 			<span v-else class="accordion__item-title" @click="toggleAccordion">
-					<font-awesome-icon class="icon icon-top" icon="custom-arrow"/>
-					{{ data.title }}
-				</span>
+				<font-awesome-icon class="icon icon-top" icon="custom-arrow"/>
+				{{ data.title }}
+			</span>
 
-			<div v-if="data.content" class="accordion__item-content">
-				<AccordionItem v-for="item in data.content" :item="item"/>
-			</div>
-
-			<div v-if="data.inner" class="accordion__item-inner">
-				<p
-					v-for="(item, idx) in data.inner"
-					:key="idx"
-				>
-					<font-awesome-icon :icon="item.icon" class="icon"/>
-					<router-link v-if="item.link" :to="item.link">
-						{{ item.title }}
-					</router-link>
-					<span v-else>{{ item.title }}</span>
-				</p>
+			<div v-if="data.inner" class="accordion__item-content">
+				<AccordionItem @inner-height-plus="innerHeight" @inner-height-minus="innerHeightM" v-for="item in data.inner" :item="item" :height="height"/>
 			</div>
 		</div>
 	</div>
@@ -57,12 +44,42 @@ export default {
 	},
 	data() {
 		return {
-			isActive: false
+			isActive: false,
+			height: 40,
+			contentHeight: 0,
+		}
+	},
+	computed: {
+		itemHeight() {
+			const paddings = 36;
+			let itemHeight = 16 * this.data.inner.length;
+			let marginHeight = 13 * (this.data.inner.length - 1);
+			let contentHeight = itemHeight + paddings + marginHeight + this.contentHeight;
+
+			return contentHeight + 40;
 		}
 	},
 	methods: {
-		toggleAccordion() {
-			this.isActive = !this.isActive
+		toggleAccordion(e) {
+			this.isActive = !this.isActive;
+
+			let item = e.target.closest('.accordion__item');
+
+			if (this.isActive) {
+				this.height = this.itemHeight;
+				item.style.maxHeight = this.itemHeight + 'px';
+			} else {
+				this.height = 40;
+				item.style.maxHeight = 40 + 'px';
+			}
+		},
+		innerHeight(height) {
+			this.contentHeight += height
+			this.height += this.contentHeight
+		},
+		innerHeightM(height) {
+			this.contentHeight -= height;
+			this.height -= this.contentHeight
 		}
 	},
 }
@@ -81,8 +98,6 @@ export default {
 		transition: 0.5s ease;
 
 		&.active {
-			max-height: 100vh;
-
 			.icon-top {
 				transform: rotate(0deg);
 				transform: translate(-5px, 0);
@@ -126,7 +141,7 @@ export default {
 			padding: 1.125rem 0;
 
 			p {
-				margin-bottom: 0.8rem;
+				margin-bottom: 0.8125rem;
 				padding-left: 0.85rem;
 				display: flex;
 				align-items: center;
