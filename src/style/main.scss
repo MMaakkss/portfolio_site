@@ -14,6 +14,14 @@ body {
 	color: $light_grey;
 }
 
+::selection {
+	background-color: $white;
+}
+
+::-moz-selection {
+	background-color: $white;
+}
+
 a {
 	color: $light_grey;
 }

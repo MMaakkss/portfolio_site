@@ -1,7 +1,12 @@
 <template>
 	<div class="projects">
 		<div class="projects__accordion">
-			<Accordion v-for="(item, idx) in items" :key="idx" :data="item"></Accordion>
+			<Accordion
+			v-for="(item, idx) in items"
+			:key="idx"
+			:data="item"
+			:check-list="true"
+			/>
 		</div>
 		<div class="projects__main">
 			<Tabs/>
@@ -93,6 +98,16 @@ export default {
 				{
 					title: 'projects',
 					icon: '',
+					inner: [
+						{
+							title: 'vue',
+							icon: 'custom-vue'
+						},
+						{
+							title: 'html',
+							icon: 'custom-html'
+						}
+					]
 				},
 			],
 		}

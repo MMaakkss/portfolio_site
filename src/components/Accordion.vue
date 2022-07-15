@@ -16,8 +16,40 @@
 				{{ data.title }}
 			</span>
 
-			<div v-if="data.inner" class="accordion__item-content">
-				<AccordionItem @inner-height-plus="innerHeight" @inner-height-minus="innerHeightM" v-for="item in data.inner" :item="item" :height="height"/>
+			<div v-if="data.inner && !checkList" class="accordion__item-content">
+				<AccordionItem
+					v-for="item in data.inner"
+					:item="item"
+					:height="height"
+					@inner-height-plus="innerHeight"
+					@inner-height-minus="innerHeightM"
+				/>
+			</div>
+
+			<div v-if="checkList" class="check-list">
+				<FormKit
+					type="form"
+					v-model="formValue"
+					:actions="false"
+				>
+					<div class="check-list__item" v-for="item in data.inner">
+						<FormKit
+							type="checkbox"
+							:name="item.title"
+						>
+<!--							<template #label="context">-->
+<!--								<div class="check-list__item__label">-->
+<!--									<font-awesome-icon class="icon" :icon="item.icon"/>-->
+<!--									<span>{{ item.title }}</span>-->
+<!--								</div>-->
+<!--							</template>-->
+						</FormKit>
+						<div class="check-list__item__label">
+							<font-awesome-icon class="icon" :icon="item.icon"/>
+							<span>{{ item.title }}</span>
+						</div>
+					</div>
+				</FormKit>
 			</div>
 		</div>
 	</div>
@@ -27,9 +59,9 @@
 import AccordionItem from "./AccordionItem.vue";
 
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {customArrow, customMail, customTel, customLink} from "@/assets/icons.js";
+import {customArrow, customMail, customTel, customLink, customHtml} from "@/assets/icons.js";
 
-library.add(customArrow, customMail, customTel, customLink)
+library.add(customArrow, customMail, customTel, customLink, customHtml)
 
 export default {
 	name: "Accordion",
@@ -40,6 +72,10 @@ export default {
 		data: {
 			type: Object,
 			default: {},
+		},
+		checkList: {
+			type: Boolean,
+			default: false
 		}
 	},
 	data() {
@@ -47,6 +83,7 @@ export default {
 			isActive: false,
 			height: 40,
 			contentHeight: 0,
+			formValue: {},
 		}
 	},
 	computed: {
@@ -57,7 +94,7 @@ export default {
 			let contentHeight = itemHeight + paddings + marginHeight + this.contentHeight;
 
 			return contentHeight + 40;
-		}
+		},
 	},
 	methods: {
 		toggleAccordion(e) {
@@ -82,8 +119,13 @@ export default {
 		innerHeightM(height) {
 			this.contentHeight -= height;
 			this.height -= this.contentHeight
-		}
+		},
 	},
+	// watch: {
+	// 	formValue() {
+	// 		console.log('this.formValue')
+	// 	}
+	// }
 }
 </script>
 
@@ -170,6 +212,73 @@ export default {
 		.icon {
 			font-size: 0.7rem;
 			transition: transform 0.25s ease;
+		}
+	}
+
+	.check-list {
+		padding: 18px 0;
+
+		.icon {
+			font-size: 0.9rem;
+			margin-right: 12px;
+		}
+
+		&__item {
+			margin-bottom: 16px;
+			position: relative;
+
+			&__label {
+				padding-left: 46px;
+				display: flex;
+				align-items: center;
+				text-transform: capitalize;
+			}
+
+			::v-deep {
+				.formkit-outer {
+					position: absolute;
+					width: 100%;
+					left: 12px;
+					top: 50%;
+					transform: translate(0, -50%);
+
+					.formkit-wrapper, .formkit-input {
+						cursor: pointer !important;
+					}
+
+					.formkit-decorator {
+						display: inline-block;
+						width: 18px;
+						height: 18px;
+						border: 1px solid $light_grey;
+						border-radius: 2px;
+						display: flex;
+						place-content: center;
+						transition: 0.2s ease;
+
+						&::before {
+							transition: 0.3s ease;
+							display: inline-block;
+							content: '\2713';
+							transform: scale(1.3);
+							color: $white;
+							opacity: 0;
+						}
+					}
+
+					.formkit-input {
+						display: none;
+					}
+
+					.formkit-input:checked + .formkit-decorator {
+						background-color: $light_grey;
+
+						&::before {
+							opacity: 1;
+						}
+					}
+				}
+			}
 		}
 	}
 }

@@ -38,7 +38,8 @@ export default {
 						{
 							title: 'bio',
 							icon: 'custom-folder',
-							iconColor: '#E99287'
+							iconColor: '#E99287',
+							inner: []
 						},
 						{
 							title: 'interests',

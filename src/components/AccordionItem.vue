@@ -1,5 +1,5 @@
 <template>
-	<div class="item" :class="{active: isActive}">
+	<div class="item" :class="{active: isActive}" v-if="item.inner">
 		<div class="item__head" @click="toggleAccordion">
 			<font-awesome-icon
 				class="icon"
@@ -15,7 +15,7 @@
 					{{ item.title }}
 			</span>
 		</div>
-		<div class="item-inner" v-if="item.inner">
+		<div class="item-inner">
 			<router-link
 				class="item-inner__wrap"
 				v-for="(item, idx) in item.inner"
@@ -29,7 +29,12 @@
 			</router-link>
 		</div>
 	</div>
-
+	<div v-else>
+		<div class="item-inner__link no-inner">
+			<font-awesome-icon class="icon" :icon="item.icon"/>
+			<span>{{ item.title }}</span>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -182,6 +187,14 @@ export default {
 			span {
 				padding-left: 0.5rem;
 			}
+
+			&.no-inner {
+				padding-left: 0.8rem;
+
+				.icon {
+					font-size: 0.8rem;
+				}
+			}
 		}
 
 		.icon {
@@ -190,6 +203,8 @@ export default {
 			margin-left: 1.625rem;
 			position: static;
 		}
+
+		
 	}
 
 	.router-link-active {
