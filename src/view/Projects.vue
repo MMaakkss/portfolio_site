@@ -98,16 +98,10 @@ export default {
 				{
 					title: 'projects',
 					icon: '',
-					inner: [
-						{
-							title: 'vue',
-							icon: 'custom-vue'
-						},
-						{
-							title: 'html',
-							icon: 'custom-html'
+					inner: {
+							vue: 'Vue',
+							html: 'Html'
 						}
-					]
 				},
 			],
 		}

@@ -28,27 +28,14 @@
 
 			<div v-if="checkList" class="check-list">
 				<FormKit
-					type="form"
+					type="checkbox"
+					:options="data.inner"
 					v-model="formValue"
-					:actions="false"
 				>
-					<div class="check-list__item" v-for="item in data.inner">
-						<FormKit
-							type="checkbox"
-							:name="item.title"
-						>
-<!--							<template #label="context">-->
-<!--								<div class="check-list__item__label">-->
-<!--									<font-awesome-icon class="icon" :icon="item.icon"/>-->
-<!--									<span>{{ item.title }}</span>-->
-<!--								</div>-->
-<!--							</template>-->
-						</FormKit>
-						<div class="check-list__item__label">
-							<font-awesome-icon class="icon" :icon="item.icon"/>
-							<span>{{ item.title }}</span>
-						</div>
-					</div>
+					<template #label="context">
+						<font-awesome-icon class="icon" :icon="`custom-${context.option.value}`"/>
+						<span>{{ context.option.label }}</span>
+					</template>
 				</FormKit>
 			</div>
 		</div>
@@ -84,13 +71,31 @@ export default {
 			height: 40,
 			contentHeight: 0,
 			formValue: {},
+			airlines: {
+				american: 'American Airlines',
+				delta: 'Delta',
+				easyjet: 'easyJet',
+				jetblue: 'JetBlue',
+				klm: 'KLM',
+				lufthansa: 'Lufthansa',
+			}
 		}
 	},
 	computed: {
 		itemHeight() {
 			const paddings = 36;
-			let itemHeight = 16 * this.data.inner.length;
-			let marginHeight = 13 * (this.data.inner.length - 1);
+			let itemHeight = 0;
+			let marginHeight = 0;
+			if (!this.checkList) {
+				itemHeight = 16 * this.data.inner.length;
+				marginHeight = 13 * (this.data.inner.length - 1);
+			} else {
+				let innerLength = Object.keys(this.data.inner).length;
+				itemHeight = 16 * innerLength;
+				marginHeight = 13 * (innerLength - 1);
+				console.log(itemHeight)
+				console.log(marginHeight)
+			}
 			let contentHeight = itemHeight + paddings + marginHeight + this.contentHeight;
 
 			return contentHeight + 40;
@@ -121,11 +126,11 @@ export default {
 			this.height -= this.contentHeight
 		},
 	},
-	// watch: {
-	// 	formValue() {
-	// 		console.log('this.formValue')
-	// 	}
-	// }
+	watch: {
+		formValue() {
+			console.log(this.formValue)
+		}
+	}
 }
 </script>
 
@@ -216,66 +221,58 @@ export default {
 	}
 
 	.check-list {
-		padding: 18px 0;
+		padding: 18px 0 0 12px;
 
 		.icon {
-			font-size: 0.9rem;
+			font-size: unset;
+			width: 20px;
 			margin-right: 12px;
 		}
 
-		&__item {
-			margin-bottom: 16px;
-			position: relative;
-
-			&__label {
-				padding-left: 46px;
-				display: flex;
-				align-items: center;
-				text-transform: capitalize;
+		::v-deep {
+			.formkit-option {
+				margin-bottom: 13px;
 			}
 
-			::v-deep {
-				.formkit-outer {
-					position: absolute;
-					width: 100%;
-					left: 12px;
-					top: 50%;
-					transform: translate(0, -50%);
+			.formkit-outer {
+				.formkit-wrapper {
+					display: flex;
+				}
 
-					.formkit-wrapper, .formkit-input {
-						cursor: pointer !important;
-					}
+				.formkit-wrapper, .formkit-input {
+					cursor: pointer !important;
+				}
 
-					.formkit-decorator {
+				.formkit-decorator {
+					display: inline-block;
+					width: 18px;
+					height: 18px;
+					border: 1px solid $light_grey;
+					border-radius: 2px;
+					display: flex;
+					place-content: center;
+					transition: 0.2s ease;
+					margin-right: 20px;
+
+					&::before {
+						transition: 0.3s ease;
 						display: inline-block;
-						width: 18px;
-						height: 18px;
-						border: 1px solid $light_grey;
-						border-radius: 2px;
-						display: flex;
-						place-content: center;
-						transition: 0.2s ease;
-
-						&::before {
-							transition: 0.3s ease;
-							display: inline-block;
-							content: '\2713';
-							transform: scale(1.3);
-							color: $white;
-							opacity: 0;
-						}
+						content: '\2713';
+						transform: scale(1.3);
+						color: $white;
+						opacity: 0;
 					}
+				}
 
-					.formkit-input {
-						display: none;
-					}
+				.formkit-input {
+					display: none;
+				}
 
-					.formkit-input:checked + .formkit-decorator {
-						background-color: $light_grey;
+				.formkit-input:checked + .formkit-decorator {
+					background-color: $light_grey;
 
-						&::before {
-							opacity: 1;
-						}
+					&::before {
+						opacity: 1;
 					}
 				}
 			}
