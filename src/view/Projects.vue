@@ -17,7 +17,7 @@
 					v-for="item in getProjectList"
 				>
 					<p class="item__title">
-						<span class="blue">{{ item.title }}</span> // {{ items.shortDescription }}
+						<span class="blue">{{ item.title }}</span> // {{ item.shortDescription }}
 					</p>
 					<div class="item__preview">
 						<div class="item__img">
