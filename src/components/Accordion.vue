@@ -86,6 +86,7 @@ export default {
 			const paddings = 36;
 			let itemHeight = 0;
 			let marginHeight = 0;
+
 			if (!this.checkList) {
 				itemHeight = 16 * this.data.inner.length;
 				marginHeight = 13 * (this.data.inner.length - 1);
@@ -93,9 +94,8 @@ export default {
 				let innerLength = Object.keys(this.data.inner).length;
 				itemHeight = 16 * innerLength;
 				marginHeight = 13 * (innerLength - 1);
-				console.log(itemHeight)
-				console.log(marginHeight)
 			}
+
 			let contentHeight = itemHeight + paddings + marginHeight + this.contentHeight;
 
 			return contentHeight + 40;
@@ -128,7 +128,7 @@ export default {
 	},
 	watch: {
 		formValue() {
-			console.log(this.formValue)
+			this.$emit('project-list', JSON.parse(JSON.stringify(this.formValue)))
 		}
 	}
 }

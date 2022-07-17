@@ -2,71 +2,35 @@
 	<div class="projects">
 		<div class="projects__accordion">
 			<Accordion
-			v-for="(item, idx) in items"
-			:key="idx"
-			:data="item"
-			:check-list="true"
+				v-for="(item, idx) in items"
+				:key="idx"
+				:data="item"
+				:check-list="true"
+				@project-list="getList"
 			/>
 		</div>
 		<div class="projects__main">
 			<Tabs/>
 			<div class="projects__items">
-				<div class="item">
+				<div
+					class="item"
+					v-for="item in getProjectList"
+				>
 					<p class="item__title">
-						<span class="blue">Project 1</span> // _ui-animations
+						<span class="blue">{{ item.title }}</span> // {{ items.shortDescription }}
 					</p>
 					<div class="item__preview">
 						<div class="item__img">
-							<img src="../assets/examp.jpeg" alt="preview">
-							<font-awesome-icon class="item__icon" icon="custom-vue"/>
+							<img :src="item.img" alt="preview">
+							<font-awesome-icon class="item__icon" :icon="`custom-${item.mainTechnology}`"/>
 						</div>
 						<div class="item__preview-bottom">
 							<p class="item__description">
-								Duis aute irure dolor in velit esse cillum dolore.
+								{{ item.description }}
 							</p>
 							<div class="item__links">
-								<a href="#">view-project</a>
-								<a href="#">GitHub</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<p class="item__title">
-						<span class="blue">Project 1</span> // _ui-animations
-					</p>
-					<div class="item__preview">
-						<div class="item__img">
-							<img src="../assets/examp.jpeg" alt="preview">
-							<font-awesome-icon class="item__icon" icon="custom-vue"/>
-						</div>
-						<div class="item__preview-bottom">
-							<p class="item__description">
-								Duis aute irure dolor in velit esse cillum dolore.
-							</p>
-							<div class="item__links">
-								<a href="#">view-project</a>
-								<a href="#">GitHub</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<p class="item__title">
-						<span class="blue">Project 1</span> // _ui-animations
-					</p>
-					<div class="item__preview">
-						<div class="item__img">
-							<img src="../assets/examp.jpeg" alt="preview">
-							<font-awesome-icon class="item__icon" icon="custom-vue"/>
-						</div>
-						<div class="item__preview-bottom">
-							<p class="item__description">
-								Duis aute irure dolor in velit esse cillum dolore.
-							</p>
-							<div class="item__links">
-								<a href="#">view-project</a>
-								<a href="#">GitHub</a>
+								<a :href="item.projectLink">view-project</a>
+								<a :href="item.gitLink">GitHub</a>
 							</div>
 						</div>
 					</div>
@@ -99,11 +63,89 @@ export default {
 					title: 'projects',
 					icon: '',
 					inner: {
-							vue: 'Vue',
-							html: 'Html'
-						}
+						vue: 'Vue',
+						html: 'Html',
+					}
 				},
 			],
+			projectList: [
+				{
+					title: 'Project html',
+					shortDescription: '_ui-animations',
+					img: '/src/assets/examp.jpeg',
+					description: 'Duis aute irure dolor in velit esse cillum dolore.',
+					projectLink: '#',
+					gitLink: '#',
+					stack: ['html'],
+					mainTechnology: 'html'
+				},
+				{
+					title: 'Project vue html',
+					shortDescription: '_ui-animations',
+					img: '/src/assets/examp.jpeg',
+					description: 'Duis aute irure dolor in velit esse cillum dolore.',
+					projectLink: '#',
+					gitLink: '#',
+					stack: ['vue', 'html'],
+					mainTechnology: 'vue'
+				},
+				{
+					title: 'Project vue',
+					shortDescription: '_ui-animations',
+					img: '/src/assets/examp.jpeg',
+					description: 'Duis aute irure dolor in velit esse cillum dolore.',
+					projectLink: '#',
+					gitLink: '#',
+					stack: ['vue'],
+					mainTechnology: 'vue'
+				},
+			],
+			list: [],
+		}
+	},
+	methods: {
+		getList(data) {
+			this.list = data;
+		}
+	},
+	computed: {
+		getProjectList() {
+			if (this.list.length > 0) {
+				let selectedValue = this.list
+				let projectList = []
+				let sortedItem;
+
+				for (let key in this.projectList) {
+					selectedValue.forEach(selectedItem => {
+						this.projectList[key].stack.forEach(item => {
+							if (selectedItem === item) {
+								sortedItem = JSON.parse(JSON.stringify(this.projectList[key]))
+								func(key)
+								projectList.push(sortedItem)
+							}
+						})
+					})
+				}
+
+				function func(key) {
+					projectList.forEach(element => {
+						if (JSON.stringify(element) === JSON.stringify(sortedItem)) {
+							let clear = projectList
+							projectList = []
+							delete  clear[key]
+
+							clear.forEach(element => {
+								if (element !== ( null && undefined)) {
+									projectList.push(element)
+								}
+							})
+						}
+					})
+				}
+				return projectList
+			} else {
+				return this.projectList
+			}
 		}
 	},
 }
