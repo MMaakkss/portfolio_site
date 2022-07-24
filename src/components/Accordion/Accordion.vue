@@ -135,7 +135,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../style/variables";
+@import "../../style/variables";
 
 .accordion {
 	width: 309px;

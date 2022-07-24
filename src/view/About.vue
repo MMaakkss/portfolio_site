@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Accordion from "@/components/Accordion.vue";
-import Tabs from "@/components/Helpers/Tabs.vue";
+import Accordion from "../components/Accordion/Accordion.vue";
+import Tabs from "../components/Helpers/Tabs.vue";
 
 export default {
 	name: "About",

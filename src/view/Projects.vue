@@ -16,9 +16,10 @@
 					class="item"
 					v-for="item in getProjectList"
 				>
-					<p class="item__title">
-						<span class="blue">{{ item.title }}</span> // {{ item.shortDescription }}
-					</p>
+					<div class="item__title">
+						<p class="blue">{{ item.name }}</p>
+						<p>//created: {{ item.created }}</p>
+					</div>
 					<div class="item__preview">
 						<div class="item__img">
 							<img :src="item.img" alt="preview">
@@ -29,8 +30,8 @@
 								{{ item.description }}
 							</p>
 							<div class="item__links">
-								<a :href="item.projectLink">view-project</a>
-								<a :href="item.gitLink">GitHub</a>
+								<a v-if="item.homepage" :href="item.homepage">view-project</a>
+								<a :href="item.url">GitHub</a>
 							</div>
 						</div>
 					</div>
@@ -42,13 +43,14 @@
 </template>
 
 <script>
-import Accordion from "@/components/Accordion.vue";
-import Tabs from "@/components/Helpers/Tabs.vue";
+import Accordion from "../components/Accordion/Accordion.vue";
+import Tabs from "../components/Helpers/Tabs.vue";
 
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {customVue} from "@/assets/icons.js";
+import {customVue, customJS} from "@/assets/icons.js";
+import {mapActions, mapState} from "vuex";
 
-library.add(customVue)
+library.add(customVue, customJS)
 
 export default {
 	name: "Projects",
@@ -65,61 +67,36 @@ export default {
 					inner: {
 						vue: 'Vue',
 						html: 'Html',
+						javascript: 'JavaScript',
 					}
-				},
-			],
-			projectList: [
-				{
-					title: 'Project html',
-					shortDescription: '_ui-animations',
-					img: '/src/assets/examp.jpeg',
-					description: 'Duis aute irure dolor in velit esse cillum dolore.',
-					projectLink: '#',
-					gitLink: '#',
-					stack: ['html'],
-					mainTechnology: 'html'
-				},
-				{
-					title: 'Project vue html',
-					shortDescription: '_ui-animations',
-					img: '/src/assets/examp.jpeg',
-					description: 'Duis aute irure dolor in velit esse cillum dolore.',
-					projectLink: '#',
-					gitLink: '#',
-					stack: ['vue', 'html'],
-					mainTechnology: 'vue'
-				},
-				{
-					title: 'Project vue',
-					shortDescription: '_ui-animations',
-					img: '/src/assets/examp.jpeg',
-					description: 'Duis aute irure dolor in velit esse cillum dolore.',
-					projectLink: '#',
-					gitLink: '#',
-					stack: ['vue'],
-					mainTechnology: 'vue'
 				},
 			],
 			list: [],
 		}
 	},
 	methods: {
+		...mapActions({
+			getGitHubRepos: 'getRepos'
+		}),
 		getList(data) {
 			this.list = data;
 		}
 	},
 	computed: {
+		...mapState({
+			reposList: 'projectList'
+		}),
 		getProjectList() {
 			if (this.list.length > 0) {
 				let selectedValue = this.list
 				let projectList = []
 				let sortedItem;
 
-				for (let key in this.projectList) {
+				for (let key in this.reposList) {
 					selectedValue.forEach(selectedItem => {
-						this.projectList[key].stack.forEach(item => {
+						this.reposList[key].stack.forEach(item => {
 							if (selectedItem === item) {
-								sortedItem = JSON.parse(JSON.stringify(this.projectList[key]))
+								sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
 								func(key)
 								projectList.push(sortedItem)
 							}
@@ -132,22 +109,26 @@ export default {
 						if (JSON.stringify(element) === JSON.stringify(sortedItem)) {
 							let clear = projectList
 							projectList = []
-							delete  clear[key]
+							delete clear[key]
 
 							clear.forEach(element => {
-								if (element !== ( null && undefined)) {
+								if (element !== (null && undefined)) {
 									projectList.push(element)
 								}
 							})
 						}
 					})
 				}
+
 				return projectList
 			} else {
-				return this.projectList
+				return this.reposList
 			}
 		}
 	},
+	mounted() {
+		this.getGitHubRepos('MMaakkss');
+	}
 }
 </script>
 
@@ -170,21 +151,36 @@ export default {
 	&__items {
 		padding: 5.625rem 2.5rem;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		flex-wrap: wrap;
 		max-height: calc(100vh - 141px);
 		overflow: auto;
-		gap: 2.5rem;
+		gap: 50px;
+
+		//@media (max-width: 1140px) {
+		//	padding: 50px 30px;
+		//	gap: 10px;
+		//	justify-content: center;
+		//}
 
 		.item {
-			width: 370px;
+			width: 45%;
 			margin-bottom: 1rem;
+			display: flex;
+			flex-direction: column;
+
+			//@media (max-width: 1080px) {
+			//	width: 48%;
+			//}
 
 			&__title {
-				margin-bottom: 1rem;
+				margin-bottom: 16px;
+				line-height: 1.2rem;
 
-				span {
+				.blue {
 					font-weight: 700;
+					text-transform: capitalize;
+					margin-bottom: 5px;
 				}
 			}
 
@@ -193,6 +189,9 @@ export default {
 				border-radius: 8px;
 				border: 1px solid $dark_grey;
 				transition: 0.3s ease;
+				flex: 1;
+				display: flex;
+				flex-direction: column;
 
 				&:hover {
 					box-shadow: 1px 1px 10px rgba(77, 91, 206, 0.2);
@@ -200,6 +199,10 @@ export default {
 
 				&-bottom {
 					padding: 2rem;
+					display: flex;
+					flex: 1;
+					flex-direction: column;
+					justify-content: end;
 				}
 			}
 
