@@ -89,12 +89,11 @@ export default {
 		getProjectList() {
 			if (this.list.length > 0) {
 				let projectList = []
-				let sortedItem;
 
 				for (let key in this.reposList) {
 					this.list.forEach(selectedItem => {
 						if (selectedItem === this.reposList[key].mainTechnology) {
-							sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
+							let sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
 
 							projectList.slice(key, 1)
 							projectList.push(sortedItem)
