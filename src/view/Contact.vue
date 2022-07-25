@@ -48,21 +48,21 @@
 				</div>
 			</div>
 
-			<div>
-				<CodeSnippet />
-			</div>
+<!--			<div>-->
+<!--				<CodeSnippet />-->
+<!--			</div>-->
 		</div>
 	</div>
 </template>
 <script>
 import Accordion from "../components/Accordion/Accordion.vue";
-import CodeSnippet from "../components/Helpers/CodeSnippet.vue";
+// import CodeSnippet from "../components/Helpers/CodeSnippet.vue";
 
 export default {
 	name: "Contact",
 	components: {
 		Accordion,
-		CodeSnippet
+		// CodeSnippet
 	},
 	data() {
 		return {
@@ -122,7 +122,7 @@ export default {
 
 	&__main {
 		width: 100%;
-		display: flex;
+		//display: flex;
 	}
 
 	&__form {

@@ -62,6 +62,9 @@ export default {
 		&__position {
 			font-size: 2rem;
 			color: $blue;
+
+			animation: bounceInLeft;
+			animation-duration: 1.5s;
 		}
 
 		&__comments {
@@ -71,11 +74,19 @@ export default {
 				margin-top: 15px;
 				color: $light_grey;
 
+				animation: bounceInLeft;
+				animation-duration: 2.5s;
+
 				&:first-child {
 					margin: 0;
+
+					animation-duration: 2s;
 				}
 
 				&.link {
+					animation: bounceInLeft;
+					animation-duration: 3s;
+
 					.blue {
 						color: $blue;
 					}
