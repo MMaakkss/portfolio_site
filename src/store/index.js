@@ -71,9 +71,8 @@ export const store = createStore({
 									description: data[i].description,
 									name: data[i].name,
 									homepage: data[i].homepage,
-									img: '/src/assets/examp.jpeg',
+									img: 'src/assets/examp.jpeg',
 									mainTechnology: data[i].language.toLowerCase(),
-									stack: [data[i].language.toLowerCase()],
 								}
 							}
 

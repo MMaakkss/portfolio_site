@@ -88,34 +88,16 @@ export default {
 		}),
 		getProjectList() {
 			if (this.list.length > 0) {
-				let selectedValue = this.list
 				let projectList = []
 				let sortedItem;
 
 				for (let key in this.reposList) {
-					selectedValue.forEach(selectedItem => {
-						this.reposList[key].stack.forEach(item => {
-							if (selectedItem === item) {
-								sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
-								func(key)
-								projectList.push(sortedItem)
-							}
-						})
-					})
-				}
+					this.list.forEach(selectedItem => {
+						if (selectedItem === this.reposList[key].mainTechnology) {
+							sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
 
-				function func(key) {
-					projectList.forEach(element => {
-						if (JSON.stringify(element) === JSON.stringify(sortedItem)) {
-							let clear = projectList
-							projectList = []
-							delete clear[key]
-
-							clear.forEach(element => {
-								if (element !== (null && undefined)) {
-									projectList.push(element)
-								}
-							})
+							projectList.slice(key, 1)
+							projectList.push(sortedItem)
 						}
 					})
 				}
