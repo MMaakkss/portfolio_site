@@ -2,9 +2,7 @@
 	<div class="projects">
 		<div class="projects__accordion">
 			<Accordion
-				v-for="(item, idx) in items"
-				:key="idx"
-				:data="item"
+				:data="this.getTechnologiesList"
 				:check-list="true"
 				@project-list="getList"
 			/>
@@ -23,7 +21,7 @@
 					<div class="item__preview">
 						<div class="item__img">
 							<img :src="item.img" alt="preview">
-							<font-awesome-icon class="item__icon" :icon="`custom-${item.mainTechnology}`"/>
+							<font-awesome-icon :style="{background: item.color}" class="item__icon" :icon="`custom-${item.mainTechnology}`"/>
 						</div>
 						<div class="item__preview-bottom">
 							<p class="item__description">
@@ -60,17 +58,6 @@ export default {
 	},
 	data() {
 		return {
-			items: [
-				{
-					title: 'projects',
-					icon: '',
-					inner: {
-						vue: 'Vue',
-						html: 'Html',
-						javascript: 'JavaScript',
-					}
-				},
-			],
 			list: [],
 		}
 	},
@@ -84,7 +71,8 @@ export default {
 	},
 	computed: {
 		...mapState({
-			reposList: 'projectList'
+			reposList: 'projectList',
+			techList: 'techList'
 		}),
 		getProjectList() {
 			if (this.list.length > 0) {
@@ -92,7 +80,7 @@ export default {
 
 				for (let key in this.reposList) {
 					this.list.forEach(selectedItem => {
-						if (selectedItem === this.reposList[key].mainTechnology) {
+						if (selectedItem.toLowerCase() === this.reposList[key].mainTechnology) {
 							let sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
 
 							projectList.slice(key, 1)
@@ -105,6 +93,16 @@ export default {
 			} else {
 				return this.reposList
 			}
+		},
+		getTechnologiesList() {
+			const tech = this.techList
+
+			const sidebarContent = {
+				title: 'projects',
+				inner: tech
+			}
+
+			return sidebarContent
 		}
 	},
 	mounted() {
@@ -232,7 +230,6 @@ export default {
 				top: 18px;
 				border-radius: 2px;
 				color: $dark;
-				background-color: $light_green;
 			}
 		}
 	}

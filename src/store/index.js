@@ -6,6 +6,7 @@ export const store = createStore({
 		return {
 			routes: [],
 			projectList: [],
+			techList: []
 		}
 	},
 	getters: {
@@ -19,6 +20,9 @@ export const store = createStore({
 		},
 		setProjectList(state, list) {
 			state.projectList = list
+		},
+		setTechList(state, data) {
+			state.techList = data
 		}
 	},
 	actions: {
@@ -42,10 +46,10 @@ export const store = createStore({
 		},
 
 		getRepos(ctx, name) {
-			return new Promise( () => {
-				axios.get( `https://api.github.com/users/${name}/repos` )
-					.then( res => {
-						if ( res.status == 200 ) {
+			return new Promise(() => {
+				axios.get(`https://api.github.com/users/${name}/repos`)
+					.then(res => {
+						if (res.status == 200) {
 							const data = res.data
 							let list = []
 
@@ -65,6 +69,22 @@ export const store = createStore({
 
 								let created = dateDay + '.' + dateMonth + '.' + dateYear
 
+								let color
+
+								switch (data[i].language.toLowerCase()) {
+									case 'vue':
+										color = '#81D4AF'
+										break;
+									case 'html':
+										color = '#E99287'
+										break;
+									case 'javascript':
+										color = '#FDC155FF'
+										break;
+									default:
+										color = '#81D4AF'
+								}
+
 								list[i] = {
 									url: data[i].html_url,
 									created: created,
@@ -73,13 +93,23 @@ export const store = createStore({
 									homepage: data[i].homepage,
 									img: 'src/assets/examp.jpeg',
 									mainTechnology: data[i].language.toLowerCase(),
+									color: color,
 								}
 							}
 
+							let tech = []
+
+							list.forEach(item => {
+								if (item.mainTechnology === 'javascript') tech.push('JavaScript')
+								else tech.push(item.mainTechnology)
+							})
+							tech = [...new Set(tech)]
+
+							ctx.commit('setTechList', tech)
 							ctx.commit('setProjectList', list)
 						}
-					} )
-					.catch( err => console.log(err.message) )
+					})
+					.catch(err => console.log(err.message))
 			});
 		}
 	}

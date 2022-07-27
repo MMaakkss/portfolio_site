@@ -33,7 +33,7 @@
 					v-model="formValue"
 				>
 					<template #label="context">
-						<font-awesome-icon class="icon" :icon="`custom-${context.option.value}`"/>
+						<font-awesome-icon class="icon" :icon="`custom-${context.option.value.toLowerCase()}`"/>
 						<span>{{ context.option.label }}</span>
 					</template>
 				</FormKit>
@@ -71,14 +71,6 @@ export default {
 			height: 40,
 			contentHeight: 0,
 			formValue: {},
-			airlines: {
-				american: 'American Airlines',
-				delta: 'Delta',
-				easyjet: 'easyJet',
-				jetblue: 'JetBlue',
-				klm: 'KLM',
-				lufthansa: 'Lufthansa',
-			}
 		}
 	},
 	computed: {
@@ -222,6 +214,10 @@ export default {
 
 	.check-list {
 		padding: 18px 0 0 12px;
+
+		span {
+			text-transform: capitalize;
+		}
 
 		.icon {
 			font-size: unset;
