@@ -52,7 +52,7 @@ export default {
 		},
 		height: {
 			type: Number,
-			default: 0
+			default: 0,
 		}
 	},
 	data() {
@@ -85,8 +85,6 @@ export default {
 				} else {
 					innerItem.style.maxHeight = 16 + 'px';
 				}
-
-
 
 				if (this.isActive) {
 					item.style.maxHeight = this.itemHeight + contentHeight + 'px';

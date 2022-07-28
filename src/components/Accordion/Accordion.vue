@@ -111,17 +111,22 @@ export default {
 		},
 		innerHeight(height) {
 			this.contentHeight += height
-			this.height += this.contentHeight
+			this.height += height
 		},
 		innerHeightM(height) {
-			this.contentHeight -= height;
-			this.height -= this.contentHeight
+			this.contentHeight -= height
+
+			if (this.contentHeight === 0) {
+				this.height -= height
+			} else {
+				this.height -= this.contentHeight
+			}
 		},
 	},
 	watch: {
 		formValue() {
 			this.$emit('project-list', JSON.parse(JSON.stringify(this.formValue)))
-		}
+		},
 	}
 }
 </script>
