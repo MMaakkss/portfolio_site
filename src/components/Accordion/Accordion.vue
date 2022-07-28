@@ -2,6 +2,7 @@
 	<div class="accordion">
 		<div
 			class="accordion__item"
+			:style="{maxHeight: height + 'px'}"
 			:class="{active: isActive}"
 		>
 			<router-link v-if="data.link" :to="data.link">
@@ -98,14 +99,11 @@ export default {
 			this.isActive = !this.isActive;
 
 			if (this.data.inner) {
-				let item = e.target.closest('.accordion__item');
 
 				if (this.isActive) {
 					this.height = this.itemHeight;
-					item.style.maxHeight = this.itemHeight + 'px';
 				} else {
 					this.height = 40;
-					item.style.maxHeight = 40 + 'px';
 				}
 			}
 		},
@@ -115,12 +113,7 @@ export default {
 		},
 		innerHeightM(height) {
 			this.contentHeight -= height
-
-			if (this.contentHeight === 0) {
-				this.height -= height
-			} else {
-				this.height -= this.contentHeight
-			}
+			this.height -= height
 		},
 	},
 	watch: {
