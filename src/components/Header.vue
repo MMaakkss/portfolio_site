@@ -107,10 +107,14 @@ export default {
 		margin-right: 20px;
 		height: 26px;
 		width: 26px;
-		display: flex;
+		display: none;
 		flex-direction: column;
 		justify-content: center;
 		position: relative;
+		
+		@media (max-width: 992px) {
+			display: flex;
+		}
 
 		span, span:before, span:after {
 			display: block;
@@ -153,7 +157,7 @@ export default {
 
 }
 
-.burger-menu, .burger {
+.burger-menu {
 	display: none;
 
 	@media (max-width: 992px) {

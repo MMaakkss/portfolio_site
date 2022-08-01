@@ -2,7 +2,7 @@
 	<div class="wrapper">
 		<Header/>
 		<template v-if="this.$route.name === 'hello'">
-			<Hello />
+			<Hello/>
 		</template>
 		<template v-else>
 			<div class="content">
@@ -23,19 +23,20 @@
 				</div>
 
 				<div class="content__main">
-					<Tabs v-if="this.$route.name !== 'hello'" />
+					<Tabs v-if="this.$route.name !== 'hello'"/>
 
 					<div class="content__main__section">
 						<router-view v-slot="{ Component }">
-<!--							<transition-->
-<!--								mode="out-in"-->
-<!--								name="fade"-->
-<!--							>-->
-								<component style="flex: 1" v-if="this.$route.name === 'projects'" :list="list" :is="Component"/>
-								<component style="flex: 1" v-else :is="Component"/>
-<!--							</transition>-->
+							<!--							<transition-->
+							<!--								mode="out-in"-->
+							<!--								name="fade"-->
+							<!--							>-->
+							<component style="flex: 1" v-if="this.$route.name === 'projects'" :list="list"
+									   :is="Component"/>
+							<component style="flex: 1" v-else :is="Component"/>
+							<!--							</transition>-->
 						</router-view>
-						<CloseButton />
+						<CloseButton/>
 					</div>
 				</div>
 			</div>
@@ -235,7 +236,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	
+
 	@media (max-width: 992px) {
 		overflow: hidden;
 	}
@@ -249,10 +250,10 @@ export default {
 			border-right: 1px solid $dark_grey;
 		}
 
-		&__main{
+		&__main {
 			flex: 1;
 
-			&__section{
+			&__section {
 				display: flex;
 				height: 100%;
 			}
