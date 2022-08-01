@@ -95,7 +95,7 @@ export default {
 		},
 	},
 	methods: {
-		toggleAccordion(e) {
+		toggleAccordion() {
 			this.isActive = !this.isActive;
 
 			if (this.data.inner) {

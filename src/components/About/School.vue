@@ -1,4 +1,5 @@
 <template>
+	<div>School</div>
 </template>
 
 <script >

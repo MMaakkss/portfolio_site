@@ -1,14 +1,6 @@
 <template>
 	<div class="projects">
-		<div class="projects__accordion">
-			<Accordion
-				:data="this.getTechnologiesList"
-				:check-list="true"
-				@project-list="getList"
-			/>
-		</div>
 		<div class="projects__main">
-			<Tabs/>
 			<div class="projects__items">
 				<div
 					class="item"
@@ -35,44 +27,28 @@
 					</div>
 				</div>
 			</div>
-			<router-view/>
 		</div>
 	</div>
 </template>
 
 <script>
-import Accordion from "../components/Accordion/Accordion.vue";
-import Tabs from "../components/Helpers/Tabs.vue";
-
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {customVue, customJS} from "@/assets/icons.js";
-import {mapActions, mapState} from "vuex";
+import {mapState} from "vuex";
 
 library.add(customVue, customJS)
 
 export default {
 	name: "Projects",
-	components: {
-		Accordion,
-		Tabs
-	},
-	data() {
-		return {
-			list: [],
-		}
-	},
-	methods: {
-		...mapActions({
-			getGitHubRepos: 'getRepos'
-		}),
-		getList(data) {
-			this.list = data;
+	props: {
+		list: {
+			type: Array,
+			default:() => []
 		}
 	},
 	computed: {
 		...mapState({
 			reposList: 'projectList',
-			techList: 'techList'
 		}),
 		getProjectList() {
 			if (this.list.length > 0) {
@@ -94,20 +70,7 @@ export default {
 				return this.reposList
 			}
 		},
-		getTechnologiesList() {
-			const tech = this.techList
-
-			const sidebarContent = {
-				title: 'projects',
-				inner: tech
-			}
-
-			return sidebarContent
-		}
 	},
-	mounted() {
-		this.getGitHubRepos('MMaakkss');
-	}
 }
 </script>
 
@@ -120,11 +83,6 @@ export default {
 
 	&__main {
 		flex: 1 1;
-	}
-
-	&__accordion {
-		height: 100%;
-		border-right: 1px solid $dark_grey;
 	}
 
 	&__items {

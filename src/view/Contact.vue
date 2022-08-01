@@ -1,46 +1,41 @@
 <template>
 	<div class="contact">
-		<div class="contact__accordion">
-			<Accordion
-				v-for="(item, idx) in items"
-				:key="idx" :data="item"
-			/>
-		</div>
 		<div class="contact__main">
 			<div class="contact__form">
-				<FormKit
-					type="form"
-					v-if="!isSubmit"
-					:actions="false"
-					:incomplete-message="false"
-					@submit="submitForm"
-				>
+				<div class="animate__animated animate__zoomIn" v-if="!isSubmit">
 					<FormKit
-						name="name"
-						label="_name:"
-						validation="required"
-						input-class="contact__form__input"
-					/>
-					<FormKit
-						type="email"
-						name="email"
-						label="_email:"
-						validation="required|email"
-						input-class="contact__form__input"
-					/>
-					<FormKit
-						type="textarea"
-						label="_message:"
-						rows="5"
-						name="message"
-						input-class="contact__form__input"
-					/>
-					<FormKit
-						type="submit"
-						label="submit-message"
-					/>
-				</FormKit>
-				<div v-if="isSubmit" class="contact__form-submitted">
+						type="form"
+						:actions="false"
+						:incomplete-message="false"
+						@submit="submitForm"
+					>
+						<FormKit
+							name="name"
+							label="_name:"
+							validation="required"
+							input-class="contact__form__input"
+						/>
+						<FormKit
+							type="email"
+							name="email"
+							label="_email:"
+							validation="required|email"
+							input-class="contact__form__input"
+						/>
+						<FormKit
+							type="textarea"
+							label="_message:"
+							rows="5"
+							name="message"
+							input-class="contact__form__input"
+						/>
+						<FormKit
+							type="submit"
+							label="submit-message"
+						/>
+					</FormKit>
+				</div>
+				<div v-if="isSubmit" class="contact__form-submitted animate__animated animate__zoomIn">
 					<p class="contact__form-submitted__thanks">Thank you! 🤘</p>
 					<p class="contact__form-submitted__info">Your message has been accepted. You will recieve answer
 						really soon!</p>
@@ -48,52 +43,48 @@
 				</div>
 			</div>
 
-<!--			<div>-->
-<!--				<CodeSnippet />-->
-<!--			</div>-->
+			<div class="contact__code">
+				<CodeSnippet :code="code"/>
+			</div>
 		</div>
 	</div>
 </template>
 <script>
-import Accordion from "../components/Accordion/Accordion.vue";
-// import CodeSnippet from "../components/Helpers/CodeSnippet.vue";
+import CodeSnippet from "../components/Helpers/CodeSnippet.vue";
 
 export default {
 	name: "Contact",
 	components: {
-		Accordion,
-		// CodeSnippet
+		CodeSnippet
 	},
 	data() {
 		return {
-			items: [
-				{
-					title: 'contacts',
-					icon: '',
-					inner: [
-						{
-							title: 'maks_minakov@icloud.com',
-							icon: 'custom-mail'
-						},
-						{
-							title: '+38094583772',
-							icon: 'custom-tel'
-						}
-					]
-				},
-				{
-					title: 'find-me-also-in',
-					icon: '',
-					inner: [
-						{
-							title: 'Telegram',
-							icon: 'custom-link',
-							link: '#',
-						},
-					]
-				}
-			],
-			isSubmit: false
+			isSubmit: false,
+			code: [
+				'deleteRoute(ctx, route) {\n' +
+				'  let routes = [...this.state.routes]\n' +
+				'  let newRoutes = []\n' +
+				'  delete routes[route]\n' +
+				'  for (let i = 0; i < routes.length; i++) {\n' +
+				'    if (routes[i] !== undefined) {\n' +
+				'      newRoutes.push(routes[i])\n' +
+				'    }\n' +
+				'  }\n' +
+				'  tctx.commit(\'updateRoutes\', newRoutes)\n' +
+				'},',
+
+				'deleteRoute(ctx, route) {\n' +
+				'  let routes = [...this.state.routes]\n' +
+				'  let newRoutes = []\n' +
+				'  delete routes[route]\n' +
+				'  for (let i = 0; i < routes.length; i++) {\n' +
+				'    if (routes[i] !== undefined) {\n' +
+				'      newRoutes.push(routes[i])\n' +
+				'    }\n' +
+				'  }\n' +
+				'  tctx.commit(\'updateRoutes\', newRoutes)\n' +
+				'},'
+			]
 		}
 	},
 	methods: {
@@ -116,17 +107,28 @@ export default {
 	display: flex;
 	height: 100%;
 
-	&__accordion {
-		border-right: 1px solid $dark_grey;
-	}
-
 	&__main {
 		width: 100%;
-		//display: flex;
+		display: flex;
+	}
+
+	&__code {
+		flex: 1 1 auto;
+		width: fit-content;
+		display: flex;
+		justify-content: center;
+		padding: 100px 0;
+
+		max-height: calc(100vh - 141px);
+		overflow: auto;
 	}
 
 	&__form {
-		padding: 115px 0 80px;
+		width: 45%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-right: 1px solid $dark_grey;
 
 		:deep {
 			.formkit-form {
@@ -150,7 +152,7 @@ export default {
 				border: 1px solid $dark_grey;
 				margin-top: 10px;
 				transition: box-shadow 0.25s ease;
-				color: $input	;
+				color: $input;
 				width: 100%;
 
 				&:-webkit-autofill {

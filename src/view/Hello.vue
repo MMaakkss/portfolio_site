@@ -6,7 +6,6 @@
 			<p class="introduce__position">> Front-end developer</p>
 			<div class="introduce__comments">
 				<p class="comment">// you can also see it on my Github page</p>
-				<p class="comment">// you can also see it on my Github page</p>
 				<p class="comment link">
 					<span class="blue">const </span>
 					<span class="green">githubLink </span>
@@ -75,13 +74,7 @@ export default {
 				color: $light_grey;
 
 				animation: bounceInLeft;
-				animation-duration: 2.5s;
-
-				&:first-child {
-					margin: 0;
-
-					animation-duration: 2s;
-				}
+				animation-duration: 2s;
 
 				&.link {
 					animation: bounceInLeft;

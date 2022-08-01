@@ -1,99 +1,27 @@
 <template>
 	<div class="about">
-		<div class="about__accordion">
-			<Accordion
-				v-for="(item, idx) in items"
-				:key="idx"
-				:data="item"
-			/>
-		</div>
 		<div class="about__main">
-			<Tabs/>
-			<div v-if="$route.name === 'about'">
-				<div class="tab-content">
+			<div class="tab-content">
+				<div v-if="$route.name === 'about'">
+					About
 				</div>
+				<router-view v-else v-slot="{ Component }">
+					<transition
+						mode="out-in"
+						name="fade"
+					>
+						<component style="flex: 1" :is="Component"/>
+					</transition>
+				</router-view>
 			</div>
-			<router-view/>
 		</div>
 	</div>
 </template>
 
 <script>
-import Accordion from "../components/Accordion/Accordion.vue";
-import Tabs from "../components/Helpers/Tabs.vue";
 
 export default {
 	name: "About",
-	components: {
-		Accordion,
-		Tabs
-	},
-	data() {
-		return {
-			items: [
-				{
-					title: 'personal-info',
-					icon: '',
-					inner: [
-						{
-							title: 'bio',
-							icon: 'custom-folder',
-							iconColor: '#E99287',
-							inner: []
-						},
-						{
-							title: 'interests',
-							icon: 'custom-folder',
-							iconColor: '#43D9AD',
-							inner: [
-								{
-									title: 'school',
-									icon: 'custom-education',
-									link: 'school'
-								},
-								{
-									title: 'school',
-									icon: 'custom-education',
-									link: 'school1'
-								},
-							]
-						},
-						{
-							title: 'education',
-							icon: 'custom-folder',
-							iconColor: '#3A49A4',
-							inner: [
-								{
-									title: 'school',
-									icon: 'custom-education',
-									link: 'school2'
-								},
-								{
-									title: 'school',
-									icon: 'custom-education',
-									link: 'school3'
-								},
-							]
-						},
-					]
-				},
-				{
-					title: 'contacts',
-					icon: '',
-					inner: [
-						{
-							title: 'maks_minakov@icloud.com',
-							icon: 'custom-mail'
-						},
-						{
-							title: '+38094583772',
-							icon: 'custom-tel'
-						}
-					]
-				}
-			],
-		}
-	},
 }
 </script>
 
@@ -104,14 +32,8 @@ export default {
 	height: 100%;
 	display: flex;
 
-	&__accordion {
-		height: 100%;
-		border-right: 1px solid $dark_grey;
-	}
-
 	&__main {
 		flex: 1 1;
-		max-width: calc(100% - 310px)
 	}
 
 	.tab-content {
