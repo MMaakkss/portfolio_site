@@ -34,6 +34,10 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 
+	@media (max-width: 390px) {
+		justify-content: left;
+	}
+
 	&__social {
 		display: flex;
 		height: 100%;
@@ -44,6 +48,10 @@ export default {
 		align-items: center;
 		justify-content: center;
 		height: 100%;
+		
+		@media (max-width: 340px) {
+			text-align: center;
+		}
 
 		&:nth-child(n) {
 			border-right: 1px solid $dark_grey;
@@ -72,6 +80,14 @@ export default {
 		display: flex;
 		align-items: center;
 		border-left: 1px solid $dark_grey;
+
+		@media (max-width: 390px) {
+			border-left: none;
+			border-right: 1px solid $dark_grey;
+		}
+		@media (max-width: 322px) {
+			border-right: none;
+		}
 
 		&-icon {
 			margin-left: 0.5rem;

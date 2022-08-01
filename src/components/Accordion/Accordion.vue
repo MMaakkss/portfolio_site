@@ -130,6 +130,10 @@ export default {
 .accordion {
 	width: 309px;
 
+	@media (max-width: 992px) {
+		width: 279px;
+	}
+
 	&__item {
 		border-bottom: 1px solid $dark_grey;
 		max-height: 40px;

@@ -235,6 +235,10 @@ export default {
 	display: flex;
 	flex-direction: column;
 	height: 100%;
+	
+	@media (max-width: 992px) {
+		overflow: hidden;
+	}
 
 	.content {
 		flex: 1 0 auto;
