@@ -27,13 +27,13 @@
 
 					<div class="content__main__section">
 						<router-view v-slot="{ Component }">
-							<transition
-								mode="out-in"
-								name="fade"
-							>
+<!--							<transition-->
+<!--								mode="out-in"-->
+<!--								name="fade"-->
+<!--							>-->
 								<component style="flex: 1" v-if="this.$route.name === 'projects'" :list="list" :is="Component"/>
 								<component style="flex: 1" v-else :is="Component"/>
-							</transition>
+<!--							</transition>-->
 						</router-view>
 						<CloseButton />
 					</div>
