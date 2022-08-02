@@ -2,10 +2,11 @@
 	<div class="wrapper">
 		<Header/>
 		<template v-if="this.$route.name === 'hello'">
-			<Hello/>
+			<Hello class="hello-content"/>
 		</template>
 		<template v-else>
 			<div class="content">
+				<div class="mobile-tab">_ {{ this.$route.name }}</div>
 				<div v-if="this.$route.name === 'projects'" class="content__accordion">
 					<Accordion
 						:data="accordionContent"
@@ -23,7 +24,7 @@
 				</div>
 
 				<div class="content__main">
-					<Tabs v-if="this.$route.name !== 'hello'"/>
+					<Tabs class="content__tab"/>
 
 					<div class="content__main__section">
 						<router-view v-slot="{ Component }">
@@ -218,7 +219,7 @@ export default {
 			this.list = data;
 		}
 	},
-	mounted() {
+	created() {
 		this.getGitHubRepos('MMaakkss');
 	}
 	// watch: {
@@ -237,14 +238,47 @@ export default {
 	flex-direction: column;
 	height: 100%;
 
-	@media (max-width: 992px) {
-		overflow: hidden;
+	.hello-content {
+
 	}
 
 	.content {
 		flex: 1 0 auto;
 		display: flex;
 		width: 100%;
+
+		@media (max-width: 992px) {
+			margin-top: 52px;
+		}
+
+		@media (max-width: 768px) {
+			display: block;
+		}
+
+		&__tab {
+			@media (max-width: 768px) {
+				display: none;
+			}
+		}
+
+		.mobile-tab {
+			display: none;
+			color: $white;
+			margin: 20px 0 30px;
+			padding-left: 30px;
+
+			@media (max-width: 768px) {
+				display: block;
+			}
+
+			@media (max-width: 475px) {
+				padding-left: 20px;
+			}
+
+			@media (max-width: 320px) {
+				padding-left: 10px;
+			}
+		}
 
 		&__accordion {
 			border-right: 1px solid $dark_grey;

@@ -13,7 +13,8 @@
 					<div class="item__preview">
 						<div class="item__img">
 							<img :src="item.img" alt="preview">
-							<font-awesome-icon :style="{background: item.color}" class="item__icon" :icon="`custom-${item.mainTechnology}`"/>
+							<font-awesome-icon :style="{background: item.color}" class="item__icon"
+											   :icon="`custom-${item.mainTechnology}`"/>
 						</div>
 						<div class="item__preview-bottom">
 							<p class="item__description">
@@ -43,7 +44,7 @@ export default {
 	props: {
 		list: {
 			type: Array,
-			default:() => []
+			default: () => []
 		}
 	},
 	computed: {
@@ -94,11 +95,24 @@ export default {
 		overflow: auto;
 		gap: 50px;
 
-		//@media (max-width: 1140px) {
-		//	padding: 50px 30px;
-		//	gap: 10px;
-		//	justify-content: center;
-		//}
+		@media (max-width: 1140px) {
+			padding: 50px 30px;
+			gap: 50px;
+			justify-content: center;
+		}
+
+		@media (max-width: 768px) {
+			padding: 40px 30px;
+			max-height: fit-content;
+		}
+
+		@media (max-width: 475px) {
+			padding: 40px 20px;
+		}
+
+		@media (max-width: 320px) {
+			padding: 40px 10px;
+		}
 
 		.item {
 			width: 45%;
@@ -106,9 +120,13 @@ export default {
 			display: flex;
 			flex-direction: column;
 
-			//@media (max-width: 1080px) {
-			//	width: 48%;
-			//}
+			@media (max-width: 1140px) {
+				width: 90%;
+			}
+
+			@media (max-width: 768px) {
+				width: 100%;
+			}
 
 			&__title {
 				margin-bottom: 16px;
@@ -168,6 +186,18 @@ export default {
 				border-radius: 8px 8px 0 0;
 				overflow: hidden;
 				position: relative;
+
+				@media (max-width: 1140px) {
+					height: 240px;
+				}
+
+				@media (max-width: 475px) {
+					height: 200px;
+				}
+
+				@media (max-width: 415px) {
+					height: 145px;
+				}
 
 				img {
 					border-radius: 8px 8px 0 0;

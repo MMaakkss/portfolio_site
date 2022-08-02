@@ -17,6 +17,10 @@ export default {
 	padding: 5px 3px;
 	border-left: 1px solid $dark_grey;
 
+	@media (max-width: 992px) {
+		display: none;
+	}
+
 	span {
 		display: block;
 		cursor: pointer;

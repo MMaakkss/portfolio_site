@@ -131,7 +131,11 @@ export default {
 	width: 309px;
 
 	@media (max-width: 992px) {
-		width: 279px;
+		width: 220px;
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
 	}
 
 	&__item {
@@ -139,6 +143,10 @@ export default {
 		max-height: 40px;
 		overflow: hidden;
 		transition: 0.5s ease;
+
+		@media (max-width: 768px) {
+			border: none;
+		}
 
 		&.active {
 			.icon-top {
@@ -163,6 +171,20 @@ export default {
 			transition: 0.25s ease;
 			display: flex;
 			align-items: center;
+
+			@media (max-width: 768px) {
+				color: $white;
+				background: $dark_grey;
+				padding: 0px 47px;
+			}
+
+			@media (max-width: 475px) {
+				padding: 0px 37px;
+			}
+
+			@media (max-width: 320px) {
+				padding: 0px 27px;
+			}
 
 			.icon {
 				position: relative;
@@ -216,6 +238,18 @@ export default {
 
 	.check-list {
 		padding: 18px 0 0 12px;
+
+		@media (max-width: 768px) {
+			padding: 18px 30px 0;
+		}
+
+		@media (max-width: 475px) {
+			padding: 18px 20px 0;
+		}
+
+		@media (max-width: 320px) {
+			padding: 18px 10px 0;
+		}
 
 		span {
 			text-transform: capitalize;

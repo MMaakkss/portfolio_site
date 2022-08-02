@@ -38,3 +38,9 @@ svg {
 .blue{
 	color: $blue;
 }
+
+@media (max-width: 992px) {
+	::-webkit-scrollbar {
+		display: none;
+	}
+}

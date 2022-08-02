@@ -54,6 +54,8 @@ export default {
 	@media (max-width: 992px) {
 		z-index: 2;
 		align-items: center;
+		position: fixed;
+		width: 100%;
 	}
 
 	a:hover {
@@ -111,7 +113,8 @@ export default {
 		flex-direction: column;
 		justify-content: center;
 		position: relative;
-		
+		cursor: pointer;
+
 		@media (max-width: 992px) {
 			display: flex;
 		}
@@ -170,10 +173,9 @@ export default {
 	flex-direction: column;
 	background-color: $light_dark;
 	width: 100%;
-	height: calc(100% - 53px - 48px);
-	max-height: calc(100% - 53px - 48px);
+	height: 100%;
 	overflow: auto;
-	position: absolute;
+	position: fixed;
 	top: -100%;
 	z-index: 1;
 	transition: 0.35s;
