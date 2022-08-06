@@ -181,13 +181,43 @@ export default {
 		&__link {
 			padding: 0 1.125rem;
 			margin-bottom: 0.8125rem;
+			white-space: nowrap;
+			display: flex;
+			align-items: center;
+			
+			@media (max-width: 768px) {
+				padding: 0 30px;
+			}
+
+			@media (max-width: 475px) {
+				padding: 0 23px;
+			}
+
+			@media (max-width: 320px) {
+				padding: 0 13px;
+			}
 
 			span {
-				padding-left: 0.5rem;
+				margin-left: 0.5rem;
+				max-width: 100%;
+				overflow: auto;
+				display: inline-block;
 			}
 
 			&.no-inner {
 				padding-left: 0.8rem;
+
+				@media (max-width: 768px) {
+					padding: 0 33px;
+				}
+
+				@media (max-width: 475px) {
+					padding: 0 23px;
+				}
+
+				@media (max-width: 320px) {
+					padding: 0 13px;
+				}
 
 				.icon {
 					font-size: 0.8rem;

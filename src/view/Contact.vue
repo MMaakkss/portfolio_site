@@ -2,7 +2,11 @@
 	<div class="contact">
 		<div class="contact__main">
 			<div class="contact__form">
-				<div class="animate__animated animate__zoomIn" v-if="!isSubmit">
+				<div
+					class="animate__animated form"
+					:class="{animate__zoomIn: firstSubmit}"
+					v-if="!isSubmit"
+				>
 					<FormKit
 						type="form"
 						:actions="false"
@@ -60,6 +64,7 @@ export default {
 	data() {
 		return {
 			isSubmit: false,
+			firstSubmit: false,
 			code: [
 				'deleteRoute(ctx, route) {\n' +
 				'  let routes = [...this.state.routes]\n' +
@@ -83,18 +88,18 @@ export default {
 				'    }\n' +
 				'  }\n' +
 				'  tctx.commit(\'updateRoutes\', newRoutes)\n' +
-				'},'
+				'},',
 			]
 		}
 	},
 	methods: {
 		activateForm() {
-			this.isSubmit = !this.isSubmit;
+			this.isSubmit = !this.isSubmit
 		},
 		submitForm(data) {
-			console.log(data);
+			this.firstSubmit = true
 
-			this.activateForm();
+			this.activateForm()
 		}
 	}
 }
@@ -117,7 +122,16 @@ export default {
 		width: fit-content;
 		display: flex;
 		justify-content: center;
-		padding: 100px 0;
+		padding: 100px 50px;
+		margin: auto;
+
+		@media (max-width: 1600px) {
+			padding: 100px 20px;
+		}
+
+		@media (max-width: 1400px) {
+			display: none;
+		}
 
 		max-height: calc(100vh - 141px);
 		overflow: auto;
@@ -129,13 +143,44 @@ export default {
 		justify-content: center;
 		align-items: center;
 		border-right: 1px solid $dark_grey;
+		padding: 0 50px;
+
+		@media (max-width: 1600px) {
+			padding: 0 20px;
+		}
+
+		@media (max-width: 1400px) {
+			width: 100%;
+			padding: 0 100px;
+			border: none;
+		}
+
+		@media (max-width: 1040px) {
+			padding: 0 50px;
+		}
+
+		@media (max-width: 768px) {
+			padding: 40px 30px;
+		}
+
+		@media (max-width: 475px) {
+			padding: 40px 20px;
+		}
+
+		@media (max-width: 320px) {
+			padding: 40px 10px;
+		}
+
+		.form {
+			width: 100%;
+		}
 
 		:deep {
 			.formkit-form {
 				display: flex;
 				flex-direction: column;
-				gap: 24px;
-				width: 372px;
+				gap: 30px;
+				width: 100%;
 				margin: auto;
 			}
 
@@ -156,7 +201,7 @@ export default {
 				width: 100%;
 
 				&:-webkit-autofill {
-					-webkit-text-fill-color: $white;
+					-webkit-text-fill-color: $input;
 					transition: background-color 5000s ease-in-out 0s;
 				}
 
@@ -173,6 +218,10 @@ export default {
 				transition: 0.25s ease;
 				border: 1px solid $dark_blue;
 				font-size: 14px;
+
+				@media (max-width: 475px) {
+					width: 100%;
+				}
 
 				&:hover {
 					background-color: unset;

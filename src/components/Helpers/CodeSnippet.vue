@@ -44,30 +44,35 @@ export default {
 <style lang="scss" scoped>
 @import "../../style/variables";
 
-p {
-	margin-bottom: 60px;
-}
+.wrapper {
+	width: 100%;
+	height: fit-content;
 
-.code {
+	p {
+		margin-bottom: 60px;
+	}
 
-	&__item {
-		padding: 20px 0;
-		border-bottom: 1px solid $dark_grey;
+	.code {
 
-		&:first-child {
-			padding-top: 0;
-		}
+		&__item {
+			padding: 20px 0;
+			border-bottom: 1px solid $dark_grey;
 
-		&:last-child {
-			padding-bottom: 0;
-			border: none;
-		}
+			&:first-child {
+				padding-top: 0;
+			}
 
-		pre {
-			padding: 25px 30px;
-			border-radius: 10px;
-			border: 1px solid $dark_grey;
-			background-color: $dark_blue;
+			&:last-child {
+				padding-bottom: 0;
+				border: none;
+			}
+
+			pre {
+				padding: 25px 30px;
+				border-radius: 10px;
+				border: 1px solid $dark_grey;
+				background-color: $dark_blue;
+			}
 		}
 	}
 }

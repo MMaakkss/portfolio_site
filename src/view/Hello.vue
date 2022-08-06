@@ -11,7 +11,7 @@
 					<span class="green">githubLink </span>
 					=
 					<span class="red">
-						“<a href="https://github.com/MMaakkss">https://github.com/MMaakkss</a>”
+						“<a target="_blank" href="https://github.com/MMaakkss">https://github.com/MMaakkss</a>”
 					</span>
 				</p>
 			</div>

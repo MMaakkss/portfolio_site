@@ -120,6 +120,10 @@ export default {
 		formValue() {
 			this.$emit('project-list', JSON.parse(JSON.stringify(this.formValue)))
 		},
+		$route() {
+			this.height = 40
+			this.isActive = false
+		}
 	}
 }
 </script>
@@ -261,7 +265,7 @@ export default {
 			margin-right: 12px;
 		}
 
-		::v-deep {
+		:deep {
 			.formkit-option {
 				margin-bottom: 13px;
 			}

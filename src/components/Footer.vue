@@ -2,11 +2,11 @@
 	<div class="footer">
 		<div class="footer__social">
 			<span class="footer__item footer__title">find me in:</span>
-			<a href="https://t.me/windstom" class="footer__item footer__item-icon">
+			<a target="_blank" href="https://t.me/windstom" class="footer__item footer__item-icon">
 				<font-awesome-icon icon="custom-telegram"/>
 			</a>
 		</div>
-		<a href="https://github.com/MMaakkss" class="footer__git">
+		<a target="_blank" href="https://github.com/MMaakkss" class="footer__git">
 			@Maksmm
 			<font-awesome-icon class="footer__git-icon" icon="custom-git"/>
 		</a>

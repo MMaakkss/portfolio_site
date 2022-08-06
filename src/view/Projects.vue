@@ -13,16 +13,25 @@
 					<div class="item__preview">
 						<div class="item__img">
 							<img :src="item.img" alt="preview">
-							<font-awesome-icon :style="{background: item.color}" class="item__icon"
-											   :icon="`custom-${item.mainTechnology}`"/>
+							<font-awesome-icon
+								class="item__icon"
+								:style="{background: item.color}"
+								:icon="`custom-${item.mainTechnology}`"
+							/>
 						</div>
 						<div class="item__preview-bottom">
 							<p class="item__description">
 								{{ item.description }}
 							</p>
 							<div class="item__links">
-								<a v-if="item.homepage" :href="item.homepage">view-project</a>
-								<a :href="item.url">GitHub</a>
+								<a
+									target="_blank"
+									:href="item.homepage"
+									v-if="item.homepage"
+								>
+									view-project
+								</a>
+								<a target="_blank" :href="item.url">GitHub</a>
 							</div>
 						</div>
 					</div>
@@ -157,7 +166,7 @@ export default {
 					display: flex;
 					flex: 1;
 					flex-direction: column;
-					justify-content: end;
+					justify-content: space-between;
 				}
 			}
 
@@ -182,10 +191,18 @@ export default {
 			}
 
 			&__img {
-				height: 145px;
+				height: 175px;
 				border-radius: 8px 8px 0 0;
 				overflow: hidden;
 				position: relative;
+
+				@media (min-width: 1800px) {
+					height: 250px;
+				}
+
+				@media (min-width: 2500px) {
+					height: 300px;
+				}
 
 				@media (max-width: 1140px) {
 					height: 240px;
