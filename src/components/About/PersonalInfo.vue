@@ -1,7 +1,7 @@
 <template>
- <div>
-	 Personal Info
- </div>
+	<div>
+		Personal Info
+	</div>
 </template>
 
 <script>

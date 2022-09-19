@@ -17,7 +17,7 @@ export default createRouter({
 		},
 		{
 			path: '/about',
-			name: 'about',
+			name: 'about-me',
 			component: About,
 			children: [
 				{

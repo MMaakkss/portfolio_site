@@ -43,9 +43,9 @@ export default {
 	height: 100%;
 	gap: 130px;
 	overflow: hidden;
-
-	@media (max-height: 600px) {
-		overflow-y: auto;
+	
+	@media (max-width: 1200px) {
+		gap: 80px;
 	}
 
 	@media (max-width: 992px) {
@@ -96,6 +96,10 @@ export default {
 			filter: blur(140px);
 			right: 10%;
 		}
+	}
+
+	@media (max-height: 600px) {
+		overflow-y: auto;
 	}
 
 	@media (max-width: 520px) {

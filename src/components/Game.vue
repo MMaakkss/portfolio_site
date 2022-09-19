@@ -82,12 +82,16 @@ export default {
 .game {
 	text-align: center;
 	color: $white;
-	padding: 30px;
+	padding: 50px 90px;
 	background: linear-gradient(150.26deg, rgba(23, 85, 83, 0.7) 1.7%, rgba(67, 217, 173, 0.091) 81.82%);
 	border: 1px solid $dark;
 	box-shadow: inset 0px 2px 0px rgba(255, 255, 255, 0.3);
 	border-radius: 8px;
 	position: relative;
+
+	@media (max-width: 1200px) {
+		padding: 40px 60px;
+	}
 
 	&__decorator {
 		display: block;
@@ -141,16 +145,20 @@ export default {
 	&__board {
 		width: fit-content;
 		border: 1px solid $white;
-		margin: auto;
-		margin-bottom: 20px;
+		margin: auto auto 20px;
 	}
 
 	&__row {
-		width: 3.5rem;
-		height: 3.5rem;
+		width: 5.5rem;
+		height: 5.5rem;
 		cursor: pointer;
 		border-right: 1px solid $white;
 		transition: 0.2s ease-in-out;
+
+		@media (max-width: 1200px) {
+			width: 4.5rem;
+			height: 4.5rem;
+		}
 
 		&:last-child {
 			border: none;
@@ -175,7 +183,7 @@ export default {
 		align-items: center;
 		height: 100%;
 		justify-content: center;
-		font-size: 1.5rem;
+		font-size: 3rem;
 	}
 
 	&__winner {

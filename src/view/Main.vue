@@ -124,7 +124,7 @@ export default {
 		}),
 		accordionContent() {
 			switch (this.$route.name) {
-				case 'about':
+				case 'about-me':
 					return [
 						{
 							title: 'personal-info',
