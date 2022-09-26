@@ -4,15 +4,43 @@
 //import fonts
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
-html{
+html {
 	font-size: 16px;
 	font-family: 'Fira Code', monospace;
 }
-body{
 
+body {
+	background-color: $light_dark;
+	color: $light_grey;
 }
 
-.container{
+::selection {
+	background-color: $white;
+}
+
+::-moz-selection {
+	background-color: $white;
+}
+
+a {
+	color: $light_grey;
+}
+
+svg {
+	font-size: 1rem;
+}
+
+.container {
 	max-width: 1170px;
 	margin: auto;
+}
+
+.blue{
+	color: $blue;
+}
+
+@media (max-width: 992px) {
+	::-webkit-scrollbar {
+		display: none;
+	}
 }
