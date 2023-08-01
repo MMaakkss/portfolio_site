@@ -67,16 +67,19 @@ export default {
 			isSubmit: false,
 			firstSubmit: false,
 			code: [
-				'deleteRoute(ctx, route) {\n' +
-				'  let routes = [...this.state.routes]\n' +
-				'  let newRoutes = []\n' +
-				'  delete routes[route]\n' +
-				'  for (let i = 0; i < routes.length; i++) {\n' +
-				'    if (routes[i] !== undefined) {\n' +
-				'      newRoutes.push(routes[i])\n' +
-				'    }\n' +
-				'  }\n' +
-				'  tctx.commit(\'updateRoutes\', newRoutes)\n' +
+				'submitForm(data) {\n' +
+				'  emailjs\n' +
+				'    .send(\n' +
+				'      "service_id",\n' +
+				'      "template_id"\n' +
+				'      { ...data }\n' +
+				'      "userId"\n' +
+				'    )\n' +
+				'    .then(() => {\n' +
+				'      this.firstSubmit = true;)\n' +
+				'      this.activateForm();\n' +
+				'    })\n' +
+				'    .catch(error => console.error("FAILED...", error));\n' +
 				'},',
 
 				'deleteRoute(ctx, route) {\n' +
@@ -189,6 +192,7 @@ export default {
 
 		:deep {
 			.formkit-form {
+				max-width: 600px;
 				display: flex;
 				flex-direction: column;
 				gap: 30px;
