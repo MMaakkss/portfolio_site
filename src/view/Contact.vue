@@ -108,7 +108,7 @@ export default {
 					{
 						...data
 					},
-					"zFNkswCQ3i-kc1dDy"
+					"zFNkswCQ3i-kc1dDy",
 				)
 				.then(() => {
 					this.firstSubmit = true;

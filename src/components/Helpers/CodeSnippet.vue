@@ -15,7 +15,7 @@
 			</div>
 			<highlightjs
 				v-else
-				language='javascript'
+				autodetect
 				:code="code"
 			/>
 		</div>

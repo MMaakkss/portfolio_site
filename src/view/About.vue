@@ -64,11 +64,13 @@ export default {
 		}
 	},
 	mounted() {
-		const infoBlock = document.querySelector(".info__text");
-		let amountOfStrokes = infoBlock.clientHeight / 24;
-		Math.ceil(amountOfStrokes);
+		if (this.$route.name === 'about-me') {
+			const infoBlock = document.querySelector(".info__text");
+			let amountOfStrokes = infoBlock.clientHeight / 24;
+			Math.ceil(amountOfStrokes);
 
-		this.amountOfStrokes = amountOfStrokes;
+			this.amountOfStrokes = amountOfStrokes;
+		}
 	},
 }
 </script>

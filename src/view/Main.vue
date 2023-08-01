@@ -27,16 +27,7 @@
 					<Tabs class="content__tab"/>
 
 					<div class="content__main__section">
-						<router-view v-slot="{ Component }">
-							<!--							<transition-->
-							<!--								mode="out-in"-->
-							<!--								name="fade"-->
-							<!--							>-->
-							<component style="flex: 1" v-if="this.$route.name === 'projects'" :list="list"
-									   :is="Component"/>
-							<component style="flex: 1" v-else :is="Component"/>
-							<!--							</transition>-->
-						</router-view>
+						<router-view style="flex: 1" :list="list"/>
 						<CloseButton/>
 					</div>
 				</div>
@@ -54,7 +45,7 @@ import Tabs from "../components/Helpers/Tabs.vue";
 import CloseButton from "../components/Helpers/CloseButton.vue";
 import Hello from "./Hello.vue";
 
-import {mapActions, mapState} from 'vuex'
+import {mapActions, mapState} from "vuex";
 
 
 export default {
@@ -70,47 +61,47 @@ export default {
 		return {
 			aboutItems: [
 				{
-					title: 'personal-info',
-					icon: '',
+					title: "personal-info",
+					icon: "",
 					inner: [
 						{
-							title: 'bio',
-							icon: 'custom-folder',
-							iconColor: '#E99287',
-							inner: []
+							title: "bio",
+							icon: "custom-folder",
+							iconColor: "#E99287",
+							inner: [],
 						},
 						{
-							title: 'interests',
-							icon: 'custom-folder',
-							iconColor: '#43D9AD',
+							title: "interests",
+							icon: "custom-folder",
+							iconColor: "#43D9AD",
 							inner: [
 								{
-									title: 'school',
-									icon: 'custom-education',
-									link: 'school'
+									title: "school",
+									icon: "custom-education",
+									link: "school",
 								},
-							]
+							],
 						},
 						{
-							title: 'education',
-							icon: 'custom-folder',
-							iconColor: '#3A49A4',
-							inner: []
+							title: "education",
+							icon: "custom-folder",
+							iconColor: "#3A49A4",
+							inner: [],
 						},
-					]
+					],
 				},
 				{
-					title: 'contacts',
-					icon: '',
+					title: "contacts",
+					icon: "",
 					inner: [
 						{
-							title: 'maks_minakov@icloud.com',
-							icon: 'custom-mail'
+							title: "maks_minakov@icloud.com",
+							icon: "custom-mail",
 						},
 						{
-							title: '+38094583772',
-							icon: 'custom-tel'
-						}
+							title: "+38094583772",
+							icon: "custom-tel",
+						},
 					]
 				}
 			],
@@ -119,114 +110,106 @@ export default {
 	},
 	computed: {
 		...mapState({
-			reposList: 'projectList',
-			techList: 'techList'
+			reposList: "projectList",
+			techList: "techList",
 		}),
 		accordionContent() {
-			switch (this.$route.name) {
-				case "about-me":
-					return [
-						{
-							title: 'personal-info',
-							icon: '',
-							inner: [
-								{
-									title: 'bio',
-									icon: 'custom-folder',
-									iconColor: '#E99287',
-									inner: []
-								},
-								{
-									title: 'interests',
-									icon: 'custom-folder',
-									iconColor: '#43D9AD',
-									inner: [
-										{
-											title: 'school',
-											icon: 'custom-education',
-											link: 'school'
-										},
-									]
-								},
-								{
-									title: 'education',
-									icon: 'custom-folder',
-									iconColor: '#3A49A4',
-									inner: []
-								},
-							]
-						},
-						{
-							title: 'contacts',
-							icon: '',
-							inner: [
-								{
-									title: 'maks_minakov@icloud.com',
-									icon: 'custom-mail'
-								},
-								{
-									title: '+38094583772',
-									icon: 'custom-tel'
-								}
-							]
-						}
-					]
-				case 'contact':
-					return [
-						{
-							title: 'contacts',
-							icon: '',
-							inner: [
-								{
-									title: 'maks_minakov@icloud.com',
-									icon: 'custom-mail'
-								},
-								{
-									title: '+38094583772',
-									icon: 'custom-tel'
-								}
-							]
-						},
-						{
-							title: 'find-me-also-in',
-							icon: '',
-							inner: [
-								{
-									title: 'Telegram',
-									icon: 'custom-link',
-									link: 'https://t.me/windstom',
-								},
-							]
-						}
-					]
-				case 'projects':
-					const tech = this.techList
+			if (this.$route.name === "about-me" || this.$route.name === "school") {
+				return [
+					{
+						title: "personal-info",
+						icon: "",
+						inner: [
+							{
+								title: "bio",
+								icon: "custom-folder",
+								iconColor: "#E99287",
+								inner: [],
+							},
+							{
+								title: "interests",
+								icon: "custom-folder",
+								iconColor: "#43D9AD",
+								inner: [
+									{
+										title: "school",
+										icon: "custom-education",
+										link: "school",
+									},
+								],
+							},
+							{
+								title: "education",
+								icon: "custom-folder",
+								iconColor: "#3A49A4",
+								inner: [],
+							},
+						],
+					},
+					{
+						title: "contacts",
+						icon: "",
+						inner: [
+							{
+								title: "maks_minakov@icloud.com",
+								icon: "custom-mail",
+							},
+							{
+								title: "+38094583772",
+								icon: "custom-tel",
+							},
+						],
+					},
+				];
+			} else if (this.$route.name === "contact") {
+				return [
+					{
+						title: "contacts",
+						icon: "",
+						inner: [
+							{
+								title: "maks_minakov@icloud.com",
+								icon: "custom-mail",
+							},
+							{
+								title: "+38094583772",
+								icon: "custom-tel",
+							},
+						],
+					},
+					{
+						title: "find-me-also-in",
+						icon: "",
+						inner: [
+							{
+								title: "Telegram",
+								icon: "custom-link",
+								link: "https://t.me/windstom",
+							},
+						],
+					},
+				];
+			} else if (this.$route.name === "projects") {
+				const tech = this.techList;
 
-					const sidebarContent = {
-						title: 'projects',
-						inner: tech
-					}
-
-					return sidebarContent
+				return {
+					title: "projects",
+					inner: tech,
+				};
 			}
 		}
 	},
 	methods: {
 		...mapActions({
-			getGitHubRepos: 'getRepos'
+			getGitHubRepos: "getRepos",
 		}),
 		getList(data) {
 			this.list = data;
 		}
 	},
 	created() {
-		this.getGitHubRepos('MMaakkss');
+		this.getGitHubRepos("MMaakkss");
 	}
-	// watch: {
-	// 	$route() {
-	// 		this.getRoutes(this.$route.name)
-	// 	}
-	// },
 };
 </script>
 
