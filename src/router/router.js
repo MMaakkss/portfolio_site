@@ -10,36 +10,36 @@ export default createRouter({
 	history: createWebHashHistory(),
 	routes: [
 		{
-			path: '/hello',
-			name: 'hello',
-			alias: '/',
+			path: "/hello",
+			name: "hello",
+			alias: "/",
 			component: Hello,
 		},
 		{
-			path: '/about',
-			name: 'about-me',
+			path: "/about",
+			name: "about-me",
 			component: About,
 			children: [
 				{
-					path: '/personal-info',
-					name: 'personal-info',
+					path: "/personal-info",
+					name: "personal-info",
 					component: PersonalInfo,
 				},
 				{
-					path: '/school',
-					name: 'school',
+					path: "/school",
+					name: "school",
 					component: School,
 				}
 			]
 		},
 		{
-			path: '/contact',
-			name: 'contact',
+			path: "/contact",
+			name: "contact",
 			component: Contact,
 		},
 		{
-			path: '/projects',
-			name: 'projects',
+			path: "/projects",
+			name: "projects",
 			component: Projects,
 		},
 	]

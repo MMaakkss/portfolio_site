@@ -12,7 +12,7 @@
 				:icon="item.icon"
 			/>
 			<span class="item__title">
-					{{ item.title }}
+				{{ item.title }}
 			</span>
 		</div>
 		<div class="item-inner">
@@ -30,7 +30,16 @@
 		</div>
 	</div>
 	<div v-else>
-		<div class="item-inner__link no-inner">
+		<a
+			class="item-inner__link no-inner link"
+			target="_blank"
+			:href="item.link"
+			v-if="item.link"
+		>
+			<font-awesome-icon class="icon" :icon="item.icon"/>
+			<span>{{ item.title }}</span>
+		</a>
+		<div class="item-inner__link no-inner" v-else>
 			<font-awesome-icon class="icon" :icon="item.icon"/>
 			<span>{{ item.title }}</span>
 		</div>
@@ -38,10 +47,10 @@
 </template>
 
 <script>
-import {library} from '@fortawesome/fontawesome-svg-core'
+import {library} from "@fortawesome/fontawesome-svg-core";
 import {customArrowLight, customEducation, customFolder} from "@/assets/icons.js";
 
-library.add(customArrowLight, customEducation, customFolder)
+library.add(customArrowLight, customEducation, customFolder);
 
 export default {
 	name: "AccordionItem",
@@ -67,34 +76,34 @@ export default {
 			let marginHeight = 13 * (this.item.inner.length - 1);
 			let contentHeight = padding + itemHeight + marginHeight;
 
-			return contentHeight
+			return contentHeight;
 		}
 	},
 	methods: {
 		toggleAccordion(e) {
 			this.isActive = !this.isActive;
 
-			if (this.item.inner) {
-				let item = e.target.closest('.accordion__item');
+			if (!this.item.inner) return;
 
-				let innerItem = e.target.closest('.item');
-				let contentHeight = this.height;
+			let item = e.target.closest(".accordion__item");
 
-				if (this.isActive) {
-					innerItem.style.maxHeight = this.itemHeight + 16 + 'px'
-				} else {
-					innerItem.style.maxHeight = 16 + 'px';
-				}
+			let innerItem = e.target.closest(".item");
+			let contentHeight = this.height;
 
-				if (this.isActive) {
-					item.style.maxHeight = this.itemHeight + contentHeight + 'px';
+			if (this.isActive) {
+				innerItem.style.maxHeight = this.itemHeight + 16 + "px";
+			} else {
+				innerItem.style.maxHeight = 16 + "px";
+			}
 
-					this.$emit('inner-height-plus', this.itemHeight);
-				} else {
-					item.style.maxHeight = this.height + 'px';
+			if (this.isActive) {
+				item.style.maxHeight = this.itemHeight + contentHeight + "px";
 
-					this.$emit('inner-height-minus', this.itemHeight);
-				}
+				this.$emit("inner-height-plus", this.itemHeight);
+			} else {
+				item.style.maxHeight = this.height + "px";
+
+				this.$emit("inner-height-minus", this.itemHeight);
 			}
 		}
 	},
@@ -125,7 +134,8 @@ export default {
 	&.active &__title {
 		color: $white;
 	}
-	.router-link-active{
+
+	.router-link-active {
 		color: $white;
 	}
 
@@ -179,12 +189,18 @@ export default {
 		}
 
 		&__link {
+			display: block;
 			padding: 0 1.125rem;
 			margin-bottom: 0.8125rem;
 			white-space: nowrap;
 			display: flex;
 			align-items: center;
-			
+			transition: 0.25s ease;
+
+			&.link:hover {
+				color: $white;
+			}
+
 			@media (max-width: 768px) {
 				padding: 0 30px;
 			}
@@ -232,7 +248,7 @@ export default {
 			position: static;
 		}
 
-		
+
 	}
 
 	.router-link-active {

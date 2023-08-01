@@ -14,13 +14,12 @@
 </template>
 
 <script>
-import {library} from '@fortawesome/fontawesome-svg-core'
+import {library} from "@fortawesome/fontawesome-svg-core";
 import {customGit, customTelegram} from "@/assets/icons.js";
-
 library.add(customGit, customTelegram)
 
 export default {
-	name: "Footer"
+	name: "Footer",
 }
 </script>
 

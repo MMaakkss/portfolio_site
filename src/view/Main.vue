@@ -124,7 +124,7 @@ export default {
 		}),
 		accordionContent() {
 			switch (this.$route.name) {
-				case 'about-me':
+				case "about-me":
 					return [
 						{
 							title: 'personal-info',
@@ -194,7 +194,7 @@ export default {
 								{
 									title: 'Telegram',
 									icon: 'custom-link',
-									link: '#',
+									link: 'https://t.me/windstom',
 								},
 							]
 						}

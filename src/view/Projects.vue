@@ -12,7 +12,7 @@
 					</div>
 					<div class="item__preview">
 						<div class="item__img">
-							<img :src="item.img" alt="preview">
+							<img src="https://cdn-developer-wp.arc.dev/wp-content/uploads/2022/06/coding-programming-project-ideas-1128x635.jpg" alt="preview">
 							<font-awesome-icon
 								class="item__icon"
 								:style="{background: item.color}"
@@ -42,42 +42,42 @@
 </template>
 
 <script>
-import {library} from '@fortawesome/fontawesome-svg-core'
+import {library} from "@fortawesome/fontawesome-svg-core";
 import {customVue, customJS} from "@/assets/icons.js";
-import {mapState} from "vuex";
+library.add(customVue, customJS);
 
-library.add(customVue, customJS)
+import {mapState} from "vuex";
 
 export default {
 	name: "Projects",
 	props: {
 		list: {
 			type: Array,
-			default: () => []
+			default: () => [],
 		}
 	},
 	computed: {
 		...mapState({
-			reposList: 'projectList',
+			reposList: "projectList",
 		}),
 		getProjectList() {
 			if (this.list.length > 0) {
-				let projectList = []
+				let projectList = [];
 
 				for (let key in this.reposList) {
 					this.list.forEach(selectedItem => {
 						if (selectedItem.toLowerCase() === this.reposList[key].mainTechnology) {
-							let sortedItem = JSON.parse(JSON.stringify(this.reposList[key]))
+							let sortedItem = JSON.parse(JSON.stringify(this.reposList[key]));
 
-							projectList.slice(key, 1)
-							projectList.push(sortedItem)
+							projectList.slice(key, 1);
+							projectList.push(sortedItem);
 						}
 					})
 				}
 
-				return projectList
+				return projectList;
 			} else {
-				return this.reposList
+				return this.reposList;
 			}
 		},
 	},
@@ -217,6 +217,7 @@ export default {
 				}
 
 				img {
+					object-fit: cover;
 					border-radius: 8px 8px 0 0;
 					width: 100%;
 					height: 100%;

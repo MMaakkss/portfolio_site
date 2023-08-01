@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import 'highlight.js/lib/common';
+import "highlight.js/lib/common";
 import hljsVuePlugin from "@highlightjs/vue-plugin";
 
 export default {
 	name: "CodeSnippet",
 	components: {
-		highlightjs: hljsVuePlugin.component
+		highlightjs: hljsVuePlugin.component,
 	},
 	props: {
 		code: {
@@ -38,7 +38,6 @@ export default {
 		}
 	},
 }
-
 </script>
 
 <style lang="scss" scoped>

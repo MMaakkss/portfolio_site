@@ -54,12 +54,13 @@
 	</div>
 </template>
 <script>
+import emailjs from "emailjs-com";
 import CodeSnippet from "../components/Helpers/CodeSnippet.vue";
 
 export default {
 	name: "Contact",
 	components: {
-		CodeSnippet
+		CodeSnippet,
 	},
 	data() {
 		return {
@@ -89,19 +90,30 @@ export default {
 				'  }\n' +
 				'  tctx.commit(\'updateRoutes\', newRoutes)\n' +
 				'},',
-			]
+			],
 		}
 	},
 	methods: {
 		activateForm() {
-			this.isSubmit = !this.isSubmit
+			this.isSubmit = !this.isSubmit;
 		},
 		submitForm(data) {
-			this.firstSubmit = true
-
-			this.activateForm()
-		}
-	}
+			emailjs
+				.send(
+					"service_olg381s",
+					"template_c8yfsti",
+					{
+						...data
+					},
+					"zFNkswCQ3i-kc1dDy"
+				)
+				.then(() => {
+					this.firstSubmit = true;
+					this.activateForm();
+				})
+				.catch(error => console.error("FAILED...", error));
+		},
+	},
 }
 </script>
 

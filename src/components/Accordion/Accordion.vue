@@ -46,10 +46,9 @@
 <script>
 import AccordionItem from "./AccordionItem.vue";
 
-import {library} from '@fortawesome/fontawesome-svg-core'
-import {customArrow, customMail, customTel, customLink, customHtml} from "@/assets/icons.js";
-
-library.add(customArrow, customMail, customTel, customLink, customHtml)
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {customArrow, customMail, customTel, customLink, customHtml, customTs, customCss} from "@/assets/icons.js";
+library.add(customArrow, customMail, customTel, customLink, customHtml, customTs, customCss);
 
 export default {
 	name: "Accordion",
@@ -98,31 +97,30 @@ export default {
 		toggleAccordion() {
 			this.isActive = !this.isActive;
 
-			if (this.data.inner) {
+			if (!this.data.inner) return;
 
-				if (this.isActive) {
-					this.height = this.itemHeight;
-				} else {
-					this.height = 40;
-				}
+			if (this.isActive) {
+				this.height = this.itemHeight;
+			} else {
+				this.height = 40;
 			}
 		},
 		innerHeight(height) {
-			this.contentHeight += height
-			this.height += height
+			this.contentHeight += height;
+			this.height += height;
 		},
 		innerHeightM(height) {
-			this.contentHeight -= height
-			this.height -= height
+			this.contentHeight -= height;
+			this.height -= height;
 		},
 	},
 	watch: {
 		formValue() {
-			this.$emit('project-list', JSON.parse(JSON.stringify(this.formValue)))
+			this.$emit('project-list', JSON.parse(JSON.stringify(this.formValue)));
 		},
 		$route() {
-			this.height = 40
-			this.isActive = false
+			this.height = 40;
+			this.isActive = false;
 		}
 	}
 }
@@ -154,8 +152,7 @@ export default {
 
 		&.active {
 			.icon-top {
-				transform: rotate(0deg);
-				transform: translate(-5px, 0);
+				transform: translate(-5px, 0) rotate(0deg);
 			}
 		}
 

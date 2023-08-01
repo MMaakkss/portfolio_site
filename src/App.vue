@@ -6,7 +6,7 @@
 import Main from "./view/Main.vue";
 
 export default {
-	name: 'App',
+	name: "App",
 	components: {
 		Main,
 	}
