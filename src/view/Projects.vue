@@ -5,6 +5,7 @@
 				<div
 					class="item"
 					v-for="item in getProjectList"
+					:key="item.name"
 				>
 					<div class="item__title">
 						<p class="blue">{{ item.name }}</p>

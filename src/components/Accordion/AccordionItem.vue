@@ -216,7 +216,6 @@ export default {
 			span {
 				margin-left: 0.5rem;
 				max-width: 100%;
-				overflow: auto;
 				display: inline-block;
 			}
 

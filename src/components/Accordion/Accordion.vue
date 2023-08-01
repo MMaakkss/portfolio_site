@@ -20,6 +20,7 @@
 			<div v-if="data.inner && !checkList" class="accordion__item-content">
 				<AccordionItem
 					v-for="item in data.inner"
+					:key="item.title"
 					:item="item"
 					:height="height"
 					@inner-height-plus="innerHeight"
