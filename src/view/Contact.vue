@@ -110,11 +110,10 @@ export default {
 					},
 					"zFNkswCQ3i-kc1dDy",
 				)
-				.then(() => {
-					this.firstSubmit = true;
-					this.activateForm();
-				})
 				.catch(error => console.error("FAILED...", error));
+
+				this.firstSubmit = true;
+				this.activateForm();
 		},
 	},
 }

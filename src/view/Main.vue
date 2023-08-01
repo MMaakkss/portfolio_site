@@ -221,10 +221,6 @@ export default {
 	flex-direction: column;
 	height: 100%;
 
-	.hello-content {
-
-	}
-
 	.content {
 		flex: 1 0 auto;
 		display: flex;
