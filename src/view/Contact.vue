@@ -76,7 +76,7 @@ export default {
 				'      "userId"\n' +
 				'    )\n' +
 				'    .then(() => {\n' +
-				'      this.firstSubmit = true;)\n' +
+				'      this.firstSubmit = true;\n' +
 				'      this.activateForm();\n' +
 				'    })\n' +
 				'    .catch(error => console.error("FAILED...", error));\n' +
