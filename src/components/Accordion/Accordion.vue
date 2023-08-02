@@ -134,10 +134,10 @@ export default {
 	width: 309px;
 
 	@media (max-width: 992px) {
-		width: 220px;
+		width: 270px;
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 820px) {
 		width: 100%;
 	}
 
@@ -147,7 +147,7 @@ export default {
 		overflow: hidden;
 		transition: 0.5s ease;
 
-		@media (max-width: 768px) {
+		@media (max-width: 820px) {
 			border: none;
 		}
 
@@ -174,7 +174,7 @@ export default {
 			display: flex;
 			align-items: center;
 
-			@media (max-width: 768px) {
+			@media (max-width: 820px) {
 				color: $white;
 				background: $dark_grey;
 				padding: 0px 47px;
@@ -241,7 +241,7 @@ export default {
 	.check-list {
 		padding: 18px 0 0 12px;
 
-		@media (max-width: 768px) {
+		@media (max-width: 820px) {
 			padding: 18px 30px 0;
 		}
 

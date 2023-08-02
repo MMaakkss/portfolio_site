@@ -201,7 +201,7 @@ export default {
 				color: $white;
 			}
 
-			@media (max-width: 768px) {
+			@media (max-width: 820px) {
 				padding: 0 30px;
 			}
 
@@ -222,7 +222,7 @@ export default {
 			&.no-inner {
 				padding-left: 0.8rem;
 
-				@media (max-width: 768px) {
+				@media (max-width: 820px) {
 					padding: 0 33px;
 				}
 

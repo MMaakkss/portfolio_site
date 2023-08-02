@@ -114,35 +114,35 @@ export default {
 			techList: "techList",
 		}),
 		accordionContent() {
-			if (this.$route.name === "about-me" || this.$route.name === "school") {
+			if (this.$route.matched.some(route => route.path === "/about")) {
 				return [
 					{
 						title: "personal-info",
 						icon: "",
 						inner: [
 							{
-								title: "bio",
+								title: "education",
 								icon: "custom-folder",
 								iconColor: "#E99287",
-								inner: [],
-							},
-							{
-								title: "interests",
-								icon: "custom-folder",
-								iconColor: "#43D9AD",
 								inner: [
 									{
-										title: "school",
+										title: "about education",
 										icon: "custom-education",
-										link: "school",
+										link: "education",
 									},
 								],
 							},
 							{
-								title: "education",
+								title: "experience",
 								icon: "custom-folder",
-								iconColor: "#3A49A4",
-								inner: [],
+								iconColor: "#43D9AD",
+								inner: [
+									{
+										title: "about experience",
+										icon: "custom-education",
+										link: "experience",
+									},
+								],
 							},
 						],
 					},
@@ -230,12 +230,12 @@ export default {
 			margin-top: 52px;
 		}
 
-		@media (max-width: 768px) {
+		@media (max-width: 820px) {
 			display: block;
 		}
 
 		&__tab {
-			@media (max-width: 768px) {
+			@media (max-width: 820px) {
 				display: none;
 			}
 		}
@@ -246,7 +246,7 @@ export default {
 			margin: 20px 0 30px;
 			padding-left: 30px;
 
-			@media (max-width: 768px) {
+			@media (max-width: 820px) {
 				display: block;
 			}
 

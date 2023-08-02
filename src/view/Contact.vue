@@ -181,7 +181,7 @@ export default {
 			padding: 40px 20px;
 		}
 
-		@media (max-width: 320px) {
+		@media (max-width: 450px) {
 			padding: 40px 10px;
 		}
 

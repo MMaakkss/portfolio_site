@@ -52,7 +52,7 @@ export default {
 		position: relative;
 
 		&:before {
-			content: '';
+			content: "";
 			position: absolute;
 			width: 200px;
 			height: 200px;
@@ -66,26 +66,21 @@ export default {
 		}
 
 		&:after {
-			content: '';
+			content: "";
 			position: absolute;
 			width: 200px;
 			height: 400px;
 			opacity: 0.4;
 			background: $blue;
-			opacity: 0.4;
 			filter: blur(174px);
 			transform: rotate(45deg);
 			z-index: -1;
 			right: 150px;
-			bottom: 0px;
+			bottom: 0;
 		}
 	}
 
 	@media (max-width: 768px) {
-		align-items: unset;
-		padding-top: 96px;
-		padding-bottom: 20px;
-
 		&:before {
 			filter: blur(140px);
 			top: 115px;
@@ -174,16 +169,6 @@ export default {
 		&__comments {
 			margin-top: 5.125rem;
 
-			@media (max-width: 768px) {
-				position: absolute;
-				bottom: 0;
-				padding-bottom: 30px;
-			}
-
-			@media (max-height: 600px) {
-				position: unset;
-			}
-
 			@media (max-width: 600px) {
 				font-size: 0.9rem;
 			}
@@ -238,7 +223,7 @@ export default {
 		}
 
 		&:before {
-			content: '';
+			content: "";
 			position: absolute;
 			width: 200px;
 			height: 200px;
@@ -252,13 +237,12 @@ export default {
 		}
 
 		&:after {
-			content: '';
+			content: "";
 			position: absolute;
 			width: 200px;
 			height: 400px;
 			opacity: 0.4;
 			background: $blue;
-			opacity: 0.4;
 			filter: blur(174px);
 			transform: rotate(45deg);
 			z-index: -1;

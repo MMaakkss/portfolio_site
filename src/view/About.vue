@@ -64,7 +64,7 @@ export default {
 		}
 	},
 	mounted() {
-		if (this.$route.name === 'about-me') {
+		if (this.$route.name === "about-me") {
 			const infoBlock = document.querySelector(".info__text");
 			let amountOfStrokes = infoBlock.clientHeight / 24;
 			Math.ceil(amountOfStrokes);
@@ -96,7 +96,7 @@ export default {
 			padding-left: 40px;
 
 			.text {
-				max-width: 500px;
+				max-width: 600px;
 				padding-left: 30px;
 			}
 

@@ -3,8 +3,8 @@ import Hello from "../view/Hello.vue";
 import About from "../view/About.vue";
 import Contact from "../view/Contact.vue";
 import Projects from "../view/Projects.vue";
-import PersonalInfo from "../components/About/PersonalInfo.vue";
-import School from "../components/About/School.vue";
+import Education from "../components/About/Education.vue";
+import Experience from "@/components/About/Experience.vue";
 
 export default createRouter({
 	history: createWebHashHistory(),
@@ -21,15 +21,15 @@ export default createRouter({
 			component: About,
 			children: [
 				{
-					path: "/personal-info",
-					name: "personal-info",
-					component: PersonalInfo,
+					path: "/education",
+					name: "education",
+					component: Education,
 				},
 				{
-					path: "/school",
-					name: "school",
-					component: School,
-				}
+					path: "/experience",
+					name: "experience",
+					component: Experience,
+				},
 			]
 		},
 		{
