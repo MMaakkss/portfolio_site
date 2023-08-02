@@ -1,27 +1,27 @@
 <template>
 	<div class="wrapper">
-		<section class="section">
-			<div class="title">
+		<section class="section animate__animated animate__bounceInLeft">
+			<h3 class="title">
 				Freelance <span class="title__date">February 2021 - March 2021</span>
-			</div>
+			</h3>
 			<p class="description">
 				Created some simple landings using html/css/js
 			</p>
 		</section>
-		<section class="section">
-			<div class="title">
+		<section class="section animate__animated animate__bounceInLeft">
+			<h3 class="title">
 				Comserve <span class="title__date">March 2022 - November 2022</span>
-			</div>
+			</h3>
 			<p class="description">
 				I worked in a team where we developed a small marketplace as well as a project management system somewhat similar to GitLab. I also developed templates for the website builder.
 				<br>
 				Technology stack: vue.js, express.js, mongoDB
 			</p>
 		</section>
-		<section class="section">
-			<div class="title">
+		<section class="section animate__animated animate__bounceInLeft">
+			<h3 class="title">
 				Bondioli & Pavesi <span class="title__date">November 2022 - Present</span>
-			</div>
+			</h3>
 			<p class="description">
 				I developed a company website that includes an online shop from scratch. I was the only front-end developer and worked in a team with a designer and a back-end developer. I also redesigned the admin panel for this site and made a mini shop for promotional purposes.
 				<br>
@@ -63,6 +63,18 @@
 
 .section {
 	padding: 40px;
+
+	&:first-child {
+		animation-duration: 1s;
+	}
+
+	&:nth-child(2) {
+		animation-duration: 1.5s;
+	}
+
+	&:last-child {
+		animation-duration: 2s;
+	}
 
 	@media (max-width: 880px) {
 		padding: 40px 20px 40px 40px;

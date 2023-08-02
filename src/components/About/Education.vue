@@ -1,14 +1,14 @@
 <template>
 	<div class="wrapper">
-		<section class="section">
-			<div class="title">
+		<section class="section animate__animated animate__bounceInLeft">
+			<h3 class="title">
 				Step IT Academy <span class="title__date">2021 - 2022</span>
-			</div>
+			</h3>
 		</section>
-		<section class="section">
-			<div class="title">
+		<section class="section animate__animated animate__bounceInLeft">
+			<h3 class="title">
 				Chernihiv National University of Technology <span class="title__date">2022 - Current</span>
-			</div>
+			</h3>
 		</section>
 	</div>
 </template>
@@ -57,6 +57,14 @@
 
 .section {
 	padding: 40px;
+
+	&:first-child {
+		animation-duration: 1s;
+	}
+
+	&:nth-child(2) {
+		animation-duration: 1.5s;
+	}
 	
 	@media (max-width: 1115px) {
 		padding: 40px 0 40px 40px;

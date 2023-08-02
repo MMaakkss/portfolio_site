@@ -2,17 +2,19 @@
 	<div class="wrapper">
 		<p>// Code snippet showcase:</p>
 		<div class="code">
-			<div
-				v-if="typeof code === 'object'"
-				v-for="(item, idx) in code"
-				:key="idx"
-				class="code__item"
-			>
-				<highlightjs
-					language='javascript'
-					:code="item"
-				/>
-			</div>
+			<template v-if="typeof code === 'object'">
+				<div
+					v-for="(item, idx) in code"
+					:key="idx"
+					class="code__item animate__animated animate__bounceInRight"
+				>
+					<highlightjs
+						language='javascript'
+						:code="item"
+					/>
+				</div>
+			</template>
+			
 			<highlightjs
 				v-else
 				autodetect
@@ -59,11 +61,13 @@ export default {
 
 			&:first-child {
 				padding-top: 0;
+				animation-duration: 1s;
 			}
 
 			&:last-child {
 				padding-bottom: 0;
 				border: none;
+				animation-duration: 1.5s;
 			}
 
 			pre {

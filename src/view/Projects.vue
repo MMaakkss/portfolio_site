@@ -3,7 +3,7 @@
 		<div class="projects__main">
 			<div class="projects__items">
 				<div
-					class="item"
+					class="item animate__animated animate__bounceInUp"
 					v-for="item in getProjectList"
 					:key="item.name"
 				>

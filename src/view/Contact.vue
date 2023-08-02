@@ -3,7 +3,7 @@
 		<div class="contact__main">
 			<div class="contact__form">
 				<div
-					class="animate__animated form"
+					class="animate__animated animate__bounceInLeft form"
 					:class="{animate__zoomIn: firstSubmit}"
 					v-if="!isSubmit"
 				>
