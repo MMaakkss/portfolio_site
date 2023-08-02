@@ -33,6 +33,8 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	background: $light_dark;
+	position: relative;
+	z-index: 10;
 
 	&__social {
 		display: flex;
