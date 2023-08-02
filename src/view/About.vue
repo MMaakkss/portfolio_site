@@ -22,13 +22,15 @@
 								<div>About me</div>
 								<div>
 									Hi there! My name is Maksym.
+									<br>
 									I have 1.5 year of development experience with vue.js (2,3). During this time, I
 									worked on the support of the existing cloud service, developed components and logic
 									of web applications, and also created an online shop for a Polish company, working
-									together with a back-end developer and
-									designers I also tried nuxt 3 and react.
-									Since I was the only frontend developer on the last project, I am now looking for a
-									cool team where I can grow and learn from a more experienced developers.
+									together with a back-end developer and designers I also tried nuxt 3 and react.
+									<br>
+									I am motivated to learn new technologies and try myself in different programming languages.
+									Now I am focused on studying the react.js and its ecosystem, next.js, as well as other frameworks and
+									libraries related to the front-end
 								</div>
 							</div>
 							<div>
