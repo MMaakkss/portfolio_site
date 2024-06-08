@@ -1,34 +1,34 @@
 <template>
-	<Main/>
+  <Main/>
 </template>
 
 <script>
-import Main from "./view/Main.vue";
+import Main from "./view/Main.vue"
 
 export default {
-	name: "App",
-	components: {
-		Main,
-	}
+  name: "App",
+  components: {
+    Main,
+  },
 }
 </script>
 
 <style lang="scss">
 #app {
-	height: 100%;
+  height: 100%;
 }
 
 code {
-	background: unset !important;
-	padding: 0 !important;
-	line-height: 1.3rem;
+  background: unset !important;
+  padding: 0 !important;
+  line-height: 1.3rem;
 }
 
 .fade-enter-from, .fade-leave-to {
-	opacity: 0;
+  opacity: 0;
 }
 
 .fade-enter-active, .fade-leave-active {
-	transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 </style>

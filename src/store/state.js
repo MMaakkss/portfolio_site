@@ -1,5 +1,4 @@
 export default {
-	routes: [],
-	projectList: [],
-	techList: [],
+  projectList: [],
+  techList: [],
 }

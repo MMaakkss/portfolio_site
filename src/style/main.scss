@@ -5,42 +5,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 html {
-	font-size: 16px;
-	font-family: 'Fira Code', monospace;
+  font-size: 16px;
+  font-family: 'Fira Code', monospace;
 }
 
 body {
-	background-color: $light_dark;
-	color: $light_grey;
+  background-color: $light_dark;
+  color: $light_grey;
 }
 
 ::selection {
-	background-color: $white;
+  background-color: $white;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 ::-moz-selection {
-	background-color: $white;
+  background-color: $white;
 }
 
 a {
-	color: $light_grey;
+  color: $light_grey;
 }
 
 svg {
-	font-size: 1rem;
+  font-size: 1rem;
 }
 
 .container {
-	max-width: 1170px;
-	margin: auto;
+  max-width: 1170px;
+  margin: auto;
 }
 
-.blue{
-	color: $blue;
+.blue {
+  color: $blue;
 }
 
 @media (max-width: 992px) {
-	::-webkit-scrollbar {
-		display: none;
-	}
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }

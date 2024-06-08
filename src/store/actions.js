@@ -1,88 +1,69 @@
-import axios from "axios";
+import axios from "axios"
 
 export default {
-	getRoutes(ctx, newRoute) {
-		let routes = this.state.routes;
-		routes.unshift(newRoute);
-		routes = [...new Set(routes)];
-		ctx.commit("updateRoutes", routes);
-	},
-	deleteRoute(ctx, route) {
-		let routes = [...this.state.routes];
-		let newRoutes = [];
-		delete routes[route];
-		for (let i = 0; i < routes.length; i++) {
-			if (routes[i] !== undefined) newRoutes.push(routes[i]);
-		}
-		ctx.commit("updateRoutes", newRoutes);
-	},
-	getRepos(ctx, name) {
-		return new Promise(() => {
-			axios.get(`https://api.github.com/users/${name}/repos?sort=created&direction=desc`)
-				.then(res => {
-					if (res.status === 200) {
-						const data = res.data;
-						let list = [];
+  getRepos(ctx, name) {
+    return new Promise(() => {
+      axios.get(`https://api.github.com/users/${name}/repos?sort=created&direction=desc`)
+        .then(res => {
+          if (res.status === 200) {
+            const data = res.data
 
-						for (let i = 0; i < data.length; i++) {
-							let date = new Date(data[i].created_at);
+            const getColor = (lang) => {
+              switch (lang) {
+              case "vue":
+                return "#81D4AF"
+              case "html":
+                return "#E99287"
+              case "javascript":
+                return "#FDC155FF"
+              case "typescript":
+                return "#007acc"
+              case "css":
+                return "#FF8A27"
+              default:
+                return "#81D4AF"
+              }
+            }
 
-							let dateDay = date.getDate();
-							let dateMonth = date.getMonth();
-							let dateYear = date.getFullYear();
+            const getDate = (val) => {
+              const date = new Date(val)
+              let dateDay = date.getDate()
+              let dateMonth = date.getMonth()
 
-							if (dateDay < 10) dateDay = "0" + dateDay;
-							if (dateMonth < 10) dateMonth = "0" + dateMonth;
+              if (dateDay < 10) dateDay = "0" + dateDay
+              if (dateMonth < 10) dateMonth = "0" + dateMonth
 
-							let created = dateDay + "." + dateMonth + "." + dateYear;
+              return dateDay + "." + dateMonth + "." + date.getFullYear()
+            }
 
-							let color;
+            let list = data.map(item => {
+              const lang = item.language.toLowerCase()
 
-							switch (data[i].language.toLowerCase()) {
-								case "vue":
-									color = "#81D4AF";
-									break;
-								case "html":
-									color = "#E99287";
-									break;
-								case "javascript":
-									color = "#FDC155FF";
-									break;
-								case "typescript":
-									color = "#007acc";
-									break;
-								case "css":
-									color = "#FF8A27";
-									break;
-								default:
-									color = "#81D4AF";
-							}
+              return {
+                url: item.html_url,
+                created: getDate(item.created_at),
+                description: item.description,
+                name: item.name,
+                homepage: item.homepage,
+                img: "src/assets/examp.jpeg",
+                mainTechnology: lang,
+                color: getColor(lang),
+              }
+            })
 
-							list[i] = {
-								url: data[i].html_url,
-								created: created,
-								description: data[i].description,
-								name: data[i].name,
-								homepage: data[i].homepage,
-								img: "src/assets/examp.jpeg",
-								mainTechnology: data[i].language.toLowerCase(),
-								color: color,
-							};
-						}
+            let tech = []
 
-						let tech = [];
+            list.forEach(item => {
+              tech.push(item.mainTechnology)
+            })
 
-						list.forEach(item => {
-							if (item.mainTechnology === "javascript") tech.push("JavaScript");
-							else tech.push(item.mainTechnology);
-						})
-						tech = [...new Set(tech)];
+            tech = [...new Set(tech)]
 
-						ctx.commit("setTechList", tech);
-						ctx.commit("setProjectList", list);
-					}
-				})
-				.catch(err => console.log(err.message))
-		});
-	}
+            ctx.commit("setTechList", tech)
+            ctx.commit("setProjectList", list)
+          }
+        })
+        .catch(err => console.log(err.message))
+    })
+  },
 }
